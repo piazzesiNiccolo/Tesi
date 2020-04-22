@@ -13,7 +13,8 @@
 \documentclass[twoside,openright,titlepage,fleqn,
 	headinclude,12pt,a4paper,BCOR5mm,footinclude]{scrbook}
 %--------------------------------------------------------------
-\newcommand{\myItalianTitle}{Tifftolo italiano\xspace}
+\newcommand{\myItalianTitle}{Attacchi verso sistemi di apprendimento in ambito autonomous
+driving: studio e implementazione in ambienti simulati\xspace}
 \newcommand{\myEnglishTitle}{Titolo inglese\xspace}
 % use the right myDegree option
 \newcommand{\myDegree}{Corso di Laurea in Informatica\xspace}
@@ -33,10 +34,12 @@
 \newcommand{\myVersion}{Version 0.1\xspace}
 %--------------------------------------------------------------
 \usepackage[italian]{babel}
-\usepackage[latin1]{inputenc} 
+\usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc} 
 \usepackage[square,numbers]{natbib} 
 \usepackage[fleqn]{amsmath}  
+\usepackage{mathtools}
+
 \usepackage{ellipsis}
 \usepackage{listings}
 \usepackage{subfig}
@@ -61,6 +64,7 @@ parts]{classicthesis}
 %--------------------------------------------------------------
 % Layout setting
 %--------------------------------------------------------------
+\graphicspath{{img/}}
 \usepackage{geometry}
 \geometry{
 	a4paper,
@@ -71,6 +75,8 @@ parts]{classicthesis}
 	lmargin       = 3.5cm, % left margin
 	tmargin       = 4cm    % top margin 
 }
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+\DeclareMathOperator*{\argmax}{argmax}
 
 \lstset{
   	frame=tb,
@@ -104,6 +110,7 @@ parts]{classicthesis}
 %\include{intro} % use \myChapter command instead of \chapter
 \tableofcontents
 \listoffigures
+\listoftables
 \cleardoublepage
 \thispagestyle{empty}
 \begin{flushright}
@@ -111,8 +118,11 @@ parts]{classicthesis}
 \emph{"Inserire citazione" \break --- Inserire autore citazione} \vspace{\stretch{2}}\null
 \end{flushright}
 \cleardoublepage
-\include{esercizi}
+\include{Chapters/introduzione}
+\include{Chapters/fondamenti}
+\include{Chapters/attacchi}
 \include{Chapters/bibliografia}
+
 %--------------------------------------------------------------
 \end{document}
 %--------------------------------------------------------------
