@@ -1,0 +1,54 @@
+\section{Machine Learning}
+Il \textbf{Machine Learning(ML)} è una branca dell'intelligenza artificiale dedicata allo studio e allo sviluppo
+di algoritmi che migliorano le prestazioni attraverso l'esperienza\cite{mlwiki}. L'abilità di un algoritmo di migliorare dall'esperienza
+automaticamente è fondamentale, perchè è impossibile scrivere programmi  che sappiano a priori tutte le possibili situazioni in cui 
+un agente potrebbe ritrovarsi. Inoltre l'ambiente in cui l'agente è inserito può mutare nel tempo\cite{aima}. Consideriamo il caso dei mercati finanziari.
+Un programma creato per prevedere i prezzi delle azioni di domani deve essere in grado  di adattarsi alle variazioni improvvise causate ad esempio
+da una crisi globale.
+\subsection{Problemi di apprendimento ben definiti}
+Iniziamo ad approfondire i concetti di apprendimento automatico considerando alcuni task di apprendimento. Più precisamente:
+\begin{defn}\label{def:learn}
+  Si dice che un programma \textbf{impara} dall'esperienza E rispetto a una classe di tasks T e una misura di prestazioni P,
+  se la sua prestazione nei tasks in T, misurata da P, migliora con l'esperienza E
+\end{defn}
+Dalla definizione \ref{def:learn} possiamo specificare diversi problemi di apprendimento, ad esempio\cite{Mitchell97}:
+\begin{itemize}
+  \item \textbf{Task T}: giocare a scacchi
+  \item \textbf{Misura di prestazioni P}: percentuale di partite vinte contro gli avversari
+  \item \textbf{Esperienza E}: giocare partite di prova contro se stesso
+\end{itemize}
+
+
+Ogni problema di learning consiste nel prendere la conoscenza a priori e i dati ricevuti(l'esperienza E) e 
+traformarli in una rappresentazione  interna utilizzata da un agente per prendere decisioni. La rappresentazione
+può corrispondere con i dati stessi ricevuti ma di solito è una sintesi compatta e significativa. 
+In definitiva, per specificare una determinata tecnica di apprendimento è quindi necessario affrontare le seguenti questioni:
+\begin{itemize}
+  \item \textbf{Task} Un task di apprendimento è una qualsiasi attività che può essere appresa da un agente
+  \item \textbf{Feedback} Durante l'apprendimento a un agente viene fornito un riscontro in base alla correttezza delle azioni svolte. Il riscontro può essere un premio o una punizione.  In base ad esso un agente modifica le proprie azioni
+  migliorando coì la propria esecuzione su un determinato task.
+  \item \textbf{Rappresentazione} Come detto in precedenza l'esperienza deve influenzare la rappresentazione interna di un agente.
+  Gran parte del Machine Learning è focalizzato nel contesto di una specifica rappresentazione(es. reti neurali)
+  \item \textbf{Online e Offline} Nel learning offline, tutti i training examples sono disponibili prima dell'azione di un agente. Nel learning online,
+  gli esempi vengono ricevuti durante l'esecuzione.
+  \item \textbf{Misura di Successo} Per sapere se un agente ha effettivamente imparato, è necessaria una misura di successo. La misura NON riguarda le prestazioni sui dati di addestramento, bensì le prestazioni su nuove esperienze.
+  \item \textbf{Bias} Con il termine \emph{bias} si intende la tendenza a preferire un'ipotesi rispetto a un'altra, concetto fondamentale nel processo di scelta
+  \item \textbf{Noise}Una delle proprietà più importanti per un algoritmo di apprendimento è la capacità di gestione di dati condizionati.
+  Infatti nella pratica i dati possono spesso risultare imperfetti o in alcuni casi incompleti .
+  \item \textbf{Interpolazione e Estrapolazione} L'interpolazione riguarda le
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
