@@ -20,7 +20,7 @@ Dalla definizione \ref{def:learn} possiamo specificare diversi problemi di appre
 
 
 Ogni problema di learning consiste nel prendere la conoscenza a priori e i dati ricevuti(l'esperienza E) e 
-traformarli in una rappresentazione  interna utilizzata da un agente per prendere decisioni. La rappresentazione
+trasformarli in una rappresentazione  interna utilizzata da un agente per prendere decisioni. La rappresentazione
 può corrispondere con i dati stessi ricevuti ma di solito è una sintesi compatta e significativa. 
 In definitiva, per specificare una determinata tecnica di apprendimento è quindi necessario affrontare le seguenti\cite{PooleMackworth17} questioni:
 \begin{itemize}
@@ -45,10 +45,10 @@ Gli algoritmi di Machine Learning sono suddivisi in diverse classi, a seconda de
   \caption{tre maggiori tipi di learning\cite{learn}}
   \label{fig:ml}
 \end{figure}
-In figura \ref{fig:ml} vengono mostrate le tre maggiori classi. Nel contesto di questa tesi, siamo interessati esclusivamente al \textbf{Supervised Learning}, in particolare
+In figura \ref{fig:ml} vengono mostrate le tre maggiori classi. Nel contesto di questa tesi, siamo interessati  al \textbf{Supervised Learning}, in particolare
 ad algoritmi di \textbf{Deep Supervised Learning} basati su \textbf{Reti Neurali Convoluzionali}.
 \subsection{Deep Supervised Learning}
-La forma più comune di Machine Learning è il supervised learning. Consideriamo ad esempio il caso in cui si vuole addestrare un classificatore
+La forma più comune di Machine Learning è il supervised learning. Consideriamo il caso in cui si voglia addestrare un classificatore
 che sappia riconoscere i diversi tipi di segnali stradali. Si colleziona un grosso dataset composto da immagini di segnali stradali, ciascuno di esso con la rispettiva categoria(stop, limite di velocità
 divieto di sosta ecc.). Queste immagini compongono il \textbf{training set}. Durante l'apprendimento, vengono mostrate alla macchina  le immagini del training set. Per ciascuna immagine l'algoritmo produce un output della forma di un vettore di punteggi, uno per ogni categoria.
 Si calcola una funzione che misura l'errore(o distanza) fra l'output prodotto e l'output desiderato. In base all'errore commesso l'algoritmo modifica dei paramentri interni, detti pesi, 
@@ -73,12 +73,23 @@ Un'architettura di deep learning è formata da uno stack multilivello di moduli 
 calcola una mappatura non lineare tra input-output. Ciascun livello aumenta sia la selettività che l'invarianza della rappresentazione. 
 Maggiore è la profondità dello stack, maggiore è la complessità della funzione di scelta, capace di rilevare i più piccoli cambiamenti a dettagli rilevanti\cite{deep}.
 
-\subsection{Reti Neurali}
-
+\subsection{Deep FeedForward Neural Networks}
+Le reti neurali artificiali(ANN) sono uno dei modelli computazionali di maggior successo nell'ambito del machine learning. Lo sviluppo in questo campo è stato influenzato 
+studio sulla struttura del cervello umano e sulle modalità di trasmissioni di informazioni tra neuroni. 
 \begin{figure}
   \includegraphics[width=\linewidth]{ann.png}
   \caption{schema base di una rete neurale\cite{ann}}
+  \label{fig:ann}
 \end{figure}
+
+\begin{figure}
+  \includegraphics[width=\linewidth]{nnunit.png}
+  \caption{un "neurone" artificiale \cite{unit}}
+  \label{fig::unit}
+\end{figure}
+In figura \ref{fig:ann} viene mostrato uno schema elementare di una rete neurale. Le ANN sono formate da delle unità che rappresentano la schematizzazione formale
+dei neuroni biologici.  La generica i-esima unità viene schematizzata in figura \ref{fig::unit}. Essa riceve alcuni segnali di input da altre unità,indicati con $X_j$. $X_j$ viene trasmesso all'unità opportunamente moltiplicato da un peso $W_{ij}$.
+I segnali ricevuti dall'i-esima unità costituiscono lo stato di attivazione, rappresentato dalla sommatoria \[\sum_jW_{ij}X_j\]. Il segnale prodotto in uscita dall'unità viene calcolato attraverso la funzione $f$, detta funzione di attivazione. Esistono varie funzioni di attivazione.
 
 
 
