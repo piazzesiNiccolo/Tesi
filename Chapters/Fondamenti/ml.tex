@@ -74,24 +74,53 @@ calcola una mappatura non lineare tra input-output. Ciascun livello aumenta sia 
 Maggiore è la profondità dello stack, maggiore è la complessità della funzione di scelta, capace di rilevare i più piccoli cambiamenti a dettagli rilevanti\cite{deep}.
 
 \subsection{Deep FeedForward Neural Networks}
-Le reti neurali artificiali(ANN) sono uno dei modelli computazionali di maggior successo nell'ambito del machine learning. Lo sviluppo in questo campo è stato influenzato 
-studio sulla struttura del cervello umano e sulle modalità di trasmissioni di informazioni tra neuroni. 
+
+Le reti neurali feedforward sono uno dei modelli computazionali di maggior successo nell'ambito del deep learning. Lo sviluppo in questo campo è stato influenzato  dallo
+studio sulla struttura del cervello umano e sulle modalità di trasmissioni di informazioni tra neuroni. L'obbiettivo di una rete feedforward  è l'approssimazione di una funzione $f*$ che, nel caso di un classificatore mappa
+un vettore di feature \textbf{x} a una categoria \textbf{y}. Una rete feedforward definisce una funzione $y=f(x;\theta)$ e apprende il valore di $\theta$ che permette
+la miglior approssimazione possibile. Questo tipo di reti viene detto \textbf{feedforward} perchè i dati passano dall'input x, alle computazioni che definiscono f, e infine all'output y. Non vi sono cicli 
+nei quali risultati di calcoli interni sono reinseriti all'interno della rete. Quando le reti includono anche cicli vengono dette \textbf{reti ricorrenti}.
+Uno schema di una rete feedforward  è presentato in figura \ref{fig:ann}. I livelli intermedi sono detti \textbf{hidden(nascosti)} perchè nel \textbf{training set} non vengono esplicitati
+gli output desiderati  per ciascuno di questi livelli. Ogni livello nascosto rappresenta una funzione e la funzione totale è data dalla composizione di queste funzioni. Per esempio,
+se abbiamo 3 livelli la funzione completa sarà $f(x) = f^{3}(f^{2}(f^{1}(x)))$. Il singolo livello è composto da molte \textbf{unità} che agiscono in parallelo, ciascuna rappresentante una funzione da vettore a scalare\cite{bengio}.
 \begin{figure}
-  \includegraphics[width=\linewidth]{ann.png}
+  \includegraphics[scale=0.3]{ann.png}
   \caption{schema base di una rete neurale\cite{ann}}
   \label{fig:ann}
 \end{figure}
 
+La generica i-esima unità  riceve un vettore di input dalle unità del livello precedente, indicati con $X_j$. $X_j$ viene trasmesso all'unità opportunamente moltiplicato da un peso $W_{ij}$.
+Gli input ricevuti dall'i-esima unità costituiscono lo stato di attivazione, rappresentato dalla sommatoria \[\sum_jW_{ij}X_j\]. L'output prodotto dall'unità viene calcolato attraverso la funzione $f$, detta funzione di attivazione. Il compito della funzione di attivazione è quello di controllare
+se lo stato di attivazione supera una certa soglia. Se questo avviene l'unità trasmette alle unità del livello successivo\cite{mazzetti}.
 \begin{figure}
-  \includegraphics[width=\linewidth]{nnunit.png}
+  \includegraphics[scale=0.5]{nnunit.png}
   \caption{un "neurone" artificiale \cite{unit}}
   \label{fig::unit}
 \end{figure}
-In figura \ref{fig:ann} viene mostrato uno schema elementare di una rete neurale. Le ANN sono formate da delle unità che rappresentano la schematizzazione formale
-dei neuroni biologici.  La generica i-esima unità viene schematizzata in figura \ref{fig::unit}. Essa riceve alcuni segnali di input da altre unità,indicati con $X_j$. $X_j$ viene trasmesso all'unità opportunamente moltiplicato da un peso $W_{ij}$.
-I segnali ricevuti dall'i-esima unità costituiscono lo stato di attivazione, rappresentato dalla sommatoria \[\sum_jW_{ij}X_j\]. Il segnale prodotto in uscita dall'unità viene calcolato attraverso la funzione $f$, detta funzione di attivazione. Esistono varie funzioni di attivazione.
-
-
+ssssssssssssss
+ssssssssssssss
+ssssssssssssss
+ssssssssssssss
+ssssssssssssss
+ssssssssssssss
+ssssssssssssss
+ssssssssssssss
+ssssssssssssss
+ssssssssssssss
+ssssssssssssss
+ssssssssssssss
+ssssssssssssss
+ssssssssssssss
+ssssssssssssss
+ssssssssssssss
+ssssssssssssss
+ssssssssssssss
+ssssssssssssss
+\begin{figure}
+  \includegraphics[scale=0.2]{actfun.png}
+  \caption{Alcune funzioni di attivazione\cite{act}}
+  \label{fig:act}
+\end{figure}
 
 
 
