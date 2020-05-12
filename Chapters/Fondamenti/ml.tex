@@ -97,32 +97,18 @@ se lo stato di attivazione supera una certa soglia. Se questo avviene l'unità t
   \caption{un "neurone" artificiale \cite{unit}}
   \label{fig::unit}
 \end{figure}
-ssssssssssssss
-ssssssssssssss
-ssssssssssssss
-ssssssssssssss
-ssssssssssssss
-ssssssssssssss
-ssssssssssssss
-ssssssssssssss
-ssssssssssssss
-ssssssssssssss
-ssssssssssssss
-ssssssssssssss
-ssssssssssssss
-ssssssssssssss
-ssssssssssssss
-ssssssssssssss
-ssssssssssssss
-ssssssssssssss
-ssssssssssssss
 \begin{figure}
   \includegraphics[scale=0.2]{actfun.png}
   \caption{Alcune funzioni di attivazione\cite{act}}
   \label{fig:act}
 \end{figure}
 
-
+\subsection{Learning nei neural network}
+Analizziamo adesso la fase di training di una rete feedforward.  In un problema di supervised learning si vuole determinare un vettore dei pesi $\vec{w}$ che permetta alla rete di produrre l'output corretto per ciasun esempio nel training set.
+In una rete multilivello il problema è ulteriormente complicato dalla presenza degli \textbf{hidden layers}. Mentre nell'output layer l'errore che si commette in ciascuna fase di addestramento è esplicito, l'errore presente nei livelli nascosti
+non è immediato da calcolare, in quanto nel training set non sono presenti i valori che i nodi nascosti devono assumere. Il problema viene risolto attraverso una fase di \textbf{back-propagation}:
+l'errore commesso all'output layer viene trasmesso a ritroso ai livelli della rete, nei quali viene utilizzato per aggiornare i valori dei pesi.
+\subsubsection{Gradient Descent} 
 
 
 
