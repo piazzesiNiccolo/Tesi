@@ -103,7 +103,7 @@ se lo stato di attivazione supera una certa soglia. Se questo avviene l'unità t
 \end{figure}
 
 \subsection{Learning nei neural network}
-Il learning di una rete neurale avviene solitamente(nel caso dell'bject recognition) in modalità supervisionata.  Si vuole determinare un vettore dei pesi $\vec{w}$ che permetta alla rete di produrre l'output corretto per ciasun esempio nel training set.
+Il learning di una rete neurale avviene solitamente(nel caso dell'object recognition) in modalità supervisionata.  Si vuole determinare un vettore dei pesi $\vec{w}$ che permetta alla rete di produrre l'output corretto per ciasun esempio nel training set.
 L'idea di base è quella di usare il gradient descent ma in una rete multilivello il problema è ulteriormente complicato dalla presenza degli \textbf{hidden layers}. Mentre nell'output layer l'errore che si commette in ciascuna fase di addestramento è esplicito, l'errore presente nei livelli nascosti
 non è immediato da calcolare, in quanto nel training set non sono presenti i valori che i nodi nascosti devono assumere. Il problema viene risolto trasmettendo a ritroso
 l'errore commesso dall'output layer ai livelli nascosti, con un algoritmo detto di \textbf{back-propagation}.
