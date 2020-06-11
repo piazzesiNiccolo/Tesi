@@ -1,10 +1,9 @@
-\section{Dependability e Security}
+\myChapter{Dependability e Security}\cite{tax}
 I veicoli a guida autonoma appartengono alla categoria dei sistemi critici. Un sistema critico è un sistema il cui malfunzionamento può provocare danni
 considerati inacettabili. Questi includono danni a oggetti di valore, danni ambientali e nei casi piu gravi, il ferimento o addirittura la morte delle persone.
 Per garantire che un tale sistema operi nel modo più sicuro possibile è necessario analizzare tutti i fattori che possono portare a  un fallimento irreversibile.
 
-\subsection{Dependability}
-La dependability è la capacità di un sistema di fornire un servizio sul quale è possibile fare affidamento in modo giustificato.
+La textbf{dependability} è la capacità di un sistema di fornire un servizio sul quale è possibile fare affidamento in modo giustificato.
 Essa viene suddivisa in 3 categorie:
 \begin{itemize}
     \item Attributi
@@ -16,4 +15,46 @@ Essa viene suddivisa in 3 categorie:
     \caption{tassonomia  della dependability\cite{dep}}
     \label{fig:dep}
 \end{figure}
-\subsubsection{Attributi}
+\section{Attributi}
+La dependability comprende i seguenti attributi:
+\begin{itemize}
+    \item \textbf{availability}: disponibilità del servizio corretto
+    \item \textbf{reliability}: stabilità del servizio corretto
+    \item \textbf{safety}: assenza di conseguenze catastrofiche sullìutente e sull'ambiente
+    \item \textbf{integrity}: assenza di alterazioni improprie al sistema
+    \item \textbf{maintainability}: capacità di subire modifiche e riparazioni
+\end{itemize}
+Quando si considera la \textbf{security} è necessario specificare un ulteriore attributo: la confidentiality, ovvero la mancata divulgazione di informazioni non 
+autorizzata. La security è composta da confidentiality, integrity e availability.
+\section{Mezzi di raggiungimento}
+Nel corso degli anni si sono sviluppate molte metodologie per raggiungere dependability e security. Tali metodologie possono essere raggruppate in quattro macrocategorie:
+\begin{itemize}
+    \item \textbf{fault prevention}: mezzi per prevenire l'occorrenza e l'introduzione di guasti
+    \item \textbf{fault tolerance}: mezzi per evitare fallimenti di servizio quando sono presenti dei guasti
+    \item \textbf{fault removal}: mezzi per ridurre numero e gravità dei guasti
+    \item \textbf{fault forecasting}: mezzi per stimare numero, incidenza futura e probabili conseguenze di guasti
+\end{itemize}
+Fault prevention e fault tolerance portano al conseguimento della dependability mentre fault removal e fault forecasting sono i mezzi di validazione
+\section{Minacce}
+Le maggiori minacce per la dependability sono i \textbf{guasti}(faults in inglese). I guasti hanno varie cause e causano gli \textbf{errori}. Un errore può causarne altri fino a propagarsi
+al di fuori dei confini del sistema. Quando ciò avviene, si verifica un \textbf{fallimento}. Un fallimento è la situazione in cui il servizio fornito
+è diverso dal servizio corretto.
+\begin{figure}[h]
+    \includegraphics[width=\linewidth]{chain.png}
+    \caption{Catena guasto-errore-fallimento}
+\end{figure}
+\subsection{Tipi di guasti}
+I guasti vengono classificati secondo 8 parametri, i quali creano le classi di guasto elementari, mostrate in figura \ref{fig:tax}
+\begin{figure}[h]
+    \includegraphics[width = \linewidth]{faults.png}
+    \caption{tassonomia dei guasti\cite{tax}}
+    \label{fig:tax}
+\end{figure}
+ I diversi tipi di guasto sono raggrupati in tre categorie:
+ \begin{itemize}
+     \item \textbf{Development faults}: i guasti che avvengono in fase di sviluppo
+     \item \textbf{Physical faults}: i guasti che riguardano l'hardware
+     \item \textbf{Interaction faults}: tutti i guasti causati dall'interazione con l'ambiente esterno
+ \end{itemize}
+ \newpage
+ \subsubsection{Errori umani}
