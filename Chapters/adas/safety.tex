@@ -57,4 +57,21 @@ I guasti vengono classificati secondo 8 parametri, i quali creano le classi di g
      \item \textbf{Interaction faults}: tutti i guasti causati dall'interazione con l'ambiente esterno
  \end{itemize}
  \newpage
- \subsubsection{Errori umani}
+ \subsubsection{Guasti causati dall'azione umana}
+ I guasti sul quale ci concentriamo sono quelli di origine umana volontari. Questi guasti possono essere causati da una mancanza di 
+ azioni ove necessarie(omission faults), oppure da azioni che si rilevano essere sbagliate(commision faults). Questi guasti possono
+ essere distinti in due tipi, sulla base dell'\emph{obbiettivo} dello sviluppatore o dell'essere umano che lo causa:
+ \begin{itemize}
+     \item guasti involontari, causati  accidentalmente senza lo scopo di arrecare danno
+     \item guasti maligni, causati in modo volontario per arrecare danni al sistema durante l'uso
+ \end{itemize}
+ I guasti maligni hanno  come scopo la negazione del servizio(denial of service), l'accesso a informazioni confidenziali
+ o la modifica impropria di un sistema.
+ Vengono raggruppati in due classi:
+ \begin{itemize}
+     \item \textbf{guasti a livello logico}: comprendono virus, worms, bombe logiche ecc.
+     \item \textbf{tentativi di intrusione}, anche usando mezzi fisici
+ \end{itemize}
+ In entrambi i casi si sfrutta una vulnerabilità di un sistema per ottenerne il pieno controllo(exploit).
+ La vulnerabilità solitamente è a livello software ed è causata dall'azione involontaria degli sviluppatori.
+
