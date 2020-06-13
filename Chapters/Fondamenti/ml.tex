@@ -75,7 +75,7 @@ Maggiore è la profondità dello stack, maggiore è la complessità della funzio
 \subsection{Deep FeedForward Neural Networks}
 
 Le reti neurali feedforward sono uno dei modelli computazionali di maggior successo nell'ambito del deep learning. Lo sviluppo in questo campo è stato influenzato  dallo
-studio sulla struttura del cervello umano e sulle modalità di trasmissioni di informazioni tra neuroni. L'obbiettivo di una rete feedforward  è l'approssimazione di una funzione $f*$ che, nel caso di un classificatore mappa
+studio sulla struttura del cervello umano e sulle modalità di trasmissioni di informazioni tra neuroni. L'obiettivo di una rete feedforward  è l'approssimazione di una funzione $f*$ che, nel caso di un classificatore mappa
 un vettore di feature \textbf{x} a una categoria \textbf{y}. Una rete feedforward definisce una funzione $y=f(x;\theta)$ e apprende il valore di $\theta$ che permette
 la miglior approssimazione possibile. Questo tipo di reti viene detto \textbf{feedforward} perchè i dati passano dall'input x, alle computazioni che definiscono f, e infine all'output y. Non vi sono cicli 
 nei quali risultati di calcoli interni sono reinseriti all'interno della rete. Quando le reti includono anche cicli vengono dette \textbf{reti ricorrenti}.
@@ -116,7 +116,7 @@ l'errore commesso dall'output layer ai livelli nascosti, con un algoritmo detto 
 Nel contesto dell'object-detection le reti più utilizzate sono le reti convoluzionali. Le reti convoluzionali sono  progettate per processare dati in forma 
 matriciale, come immagini e audio. La loro architettura è strutturata in una serie di fasi. Le prime fasi sono composte da due tipi di layer: \textbf{convolutional layers}
 e \textbf{pooling layers.}
-Le unità in un layer convoluzionale sono organizzate in feature maps,addette a riconoscere alcune caratteristiche di un'immagine. Ciascuna unità è collegata
+Le unità in un layer convoluzionale sono organizzate in feature maps,addette a riconoscere alcune caratteristiche di un input. Ciascuna unità è collegata
 a un sottoinsieme di unità delle feature maps nei precedenti livelli attraverso un gruppo di pesi detto \textbf{filter bank} e utilizza una funzione di attivazione non lineare come una ReLU. Tutte le unità di una feature map condividono 
 la stessa filter bank, e diverse feature maps usano diverse filter bank. L'aggregazione di unità in feature maps è motivata dalla struttura dell'input. Nei dati in forma matriciale, gruppi di valori locali sono spesso fortemente correlati,
 formando pattern locali che vengono facilmente riconosciuti. La condivisione di pesi tra unità  diverse è spiegata notando come un pattern possa apparire in qualsiasi parte dell'immagine, e l'utilizzo di una filter bank garantisce invarianza alla località.
@@ -130,7 +130,7 @@ Due o più fasi di convoluzione e pooling sono  sono seguite da altri layer conv
 \end{figure} 
 
 \subsection{Adversarial Examples}
-Nonostante gli ottimi risultati raggiunti, le reti neurali sono state dimostrate essere vulnerabili ai cosiddetti \emph{adversarial examples}. GLi adversarial
+Nonostante gli ottimi risultati raggiunti, le reti neurali sono state dimostrate essere vulnerabili ai cosiddetti \emph{adversarial examples}. Gli adversarial
 examples sono input intenzionalmente modificati che risultano essere molto simili agli input originali per gli esseri umani, ma che causano decisioni scorrette
 da parte dei modelli. La vulnerabilità delle reti a questo tipo di attacchi rappresenta un grande rischio di sicurezza nelle applicazioni pratiche come i veicoli a guida autonoma. Studiarli
 è quindi necessario per identificare le limitazioni degli algoritmi di learning attuali, dando così spunti per migliorare la robustezza dei modelli.

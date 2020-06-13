@@ -3,7 +3,7 @@ I veicoli a guida autonoma appartengono alla categoria dei sistemi critici. Un s
 considerati inacettabili. Questi includono danni a oggetti di valore, danni ambientali e nei casi piu gravi, il ferimento o addirittura la morte delle persone.
 Per garantire che un tale sistema operi nel modo più sicuro possibile è necessario analizzare tutti i fattori che possono portare a  un fallimento irreversibile.
 
-La textbf{dependability} è la capacità di un sistema di fornire un servizio sul quale è possibile fare affidamento in modo giustificato.
+La \textbf{dependability} è la capacità di un sistema di fornire un servizio sul quale è possibile fare affidamento in modo giustificato.
 Essa viene suddivisa in 3 categorie:
 \begin{itemize}
     \item Attributi
@@ -20,7 +20,7 @@ La dependability comprende i seguenti attributi:
 \begin{itemize}
     \item \textbf{availability}: disponibilità del servizio corretto
     \item \textbf{reliability}: stabilità del servizio corretto
-    \item \textbf{safety}: assenza di conseguenze catastrofiche sullìutente e sull'ambiente
+    \item \textbf{safety}: assenza di conseguenze catastrofiche sull'utente e sull'ambiente
     \item \textbf{integrity}: assenza di alterazioni improprie al sistema
     \item \textbf{maintainability}: capacità di subire modifiche e riparazioni
 \end{itemize}
@@ -44,13 +44,13 @@ al di fuori dei confini del sistema. Quando ciò avviene, si verifica un \textbf
     \caption{Catena guasto-errore-fallimento}
 \end{figure}
 \subsection{Tipi di guasti}
-I guasti vengono classificati secondo 8 parametri, i quali creano le classi di guasto elementari, mostrate in figura \ref{fig:tax}
+I guasti vengono classificati secondo 8 parametri, i quali creano le classi di guasto elementari, mostrate in figura \ref{fig:tax}.
 \begin{figure}[h]
     \includegraphics[width = \linewidth]{faults.png}
     \caption{tassonomia dei guasti\cite{tax}}
     \label{fig:tax}
 \end{figure}
- I diversi tipi di guasto sono raggrupati in tre categorie:
+ I diversi tipi di guasto sono raggruppati in tre categorie:
  \begin{itemize}
      \item \textbf{Development faults}: i guasti che avvengono in fase di sviluppo
      \item \textbf{Physical faults}: i guasti che riguardano l'hardware
@@ -58,9 +58,9 @@ I guasti vengono classificati secondo 8 parametri, i quali creano le classi di g
  \end{itemize}
  \newpage
  \subsubsection{Guasti causati dall'azione umana}
- I guasti sul quale ci concentriamo sono quelli di origine umana volontari. Questi guasti possono essere causati da una mancanza di 
- azioni ove necessarie(omission faults), oppure da azioni che si rilevano essere sbagliate(commision faults). Questi guasti possono
- essere distinti in due tipi, sulla base dell'\emph{obbiettivo} dello sviluppatore o dell'essere umano che lo causa:
+ I guasti sul quale ci concentriamo sono quelli di origine umana . Questi guasti possono essere causati da una mancanza di 
+ azioni ove necessarie(omission faults), oppure da azioni che si rilevano essere sbagliate(commision faults). Vengono
+ suddivisi in due tipi, sulla base dell'\emph{obiettivo} dello sviluppatore o dell'essere umano che lo causa:
  \begin{itemize}
      \item guasti involontari, causati  accidentalmente senza lo scopo di arrecare danno
      \item guasti maligni, causati in modo volontario per arrecare danni al sistema durante l'uso
