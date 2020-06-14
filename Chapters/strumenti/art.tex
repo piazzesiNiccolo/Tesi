@@ -1,1 +1,121 @@
+\newpage
 \section{Adversarial Robustness Toolbox}\cite{art2018}
+L'Adversarial Robustness Toolbox(ART) è una libreria Python che aiuta sviluppatori e ricercatori nella difesa dei modelli di machine learning dagli adversarial examples, rendendoli più sicuri 
+ed affidabili. Creare tali difese significa certificare e verificare la robustezza con metodi come il preprocessing degli input,  l'aumento del training set
+con esempi adversarial e fare uso di metodologie di rilevamento di input modificati. L'ART fornisce degli attacchi grazie ai quali valutare la sicurezza dei modelli
+testati. Nella libreria sono presenti interfacce standard èper le librerie di machine learning più popolari. L'architettura dell'ART rende semplice combinare i vari approcci  ed è progettato sia per i ricercatori che vogliono eseguire esperimenti su larga scala di benchmarking di attacchi e difese, sia per gli sviluppatori 
+che vogliono rilasciare applicazioni vche fanno uso di machine learning sicure.
+\subsection{La struttura della libreria}
+L'ART è diviso in vari sottomoduli:
+\begin{itemize}
+    \item art.attacks
+    \item art.classifiers
+    \item art.defences
+    \item art.detection
+    \item art.metrics
+    \item art.poison\_detection
+\end{itemize}
+
+\subsubsection{art.attacks}
+Implementazione degli attacchi presenti nella libreria. Gli attacchi sono divisi in tre categorie:\textbf{Evasion Attacks},
+\textbf{Poisoning Attacks} e \textbf{Extraction Attacks}.
+\paragraph{Evasion Attacks}
+Si applica una modifica impercettibile all'input per causare la misclassificazione  del modello attaccato. Si distinguono in attacchi whitebox  e attacchi blackbox a seconda che i parametri del modello
+siano conosciuti o meno.
+
+\begin{itemize}
+    \item Threshold Attack
+    \item Pixel Attack
+    \item HopSkipJump Attack
+    \item High Confidence Low Uncertainty adversarial examples
+    \item Projected Gradient Descent
+    \item NewtonFool
+    \item Elastic net attack
+    \item Spatial transformation attack
+    \item Query-efficient black-box attack
+    \item Zeroth-order optimization attack
+    \item Decision-based attack / Boundary attack
+    \item Adversarial patch
+    \item Decision tree attack
+    \item Carlini \& Wagner(C\&W) L\_2 and L\_inf attacks
+    \item Basic iterative method
+    \item Jacobian saliency map
+    \item Universal perturbation
+    \item DeepFool
+    \item Virtual adversarial method
+    \item Fast gradient method
+\end{itemize} 
+\paragraph{Poisoning Attacks}
+Si modifica il training set per ridurre l'accuratezza del processo di learning. Il poisoning include la modifica degli esempi nel dataset, l'iniezione di dati "maligni" o la modifica
+delle etichette. 
+
+
+\begin{itemize}
+    \item Poisoning Attack on SVM
+    \item Backdoor Attack
+\end{itemize}
+\paragraph{Extraction Attacks} Si cerca di sviluppare un modello sulla base di un modello proprietario e chiuso, "rubando" il comportamento del modello attaccato.
+
+\begin{itemize}
+    \item Functionally Equivalent Extraction
+    \item Copycat Confidence
+    \item KnockoffNets
+\end{itemize}
+\subsubsection{art.classifers}
+Implementazione delle interfacce per usare librerie di machine learning esterne insieme all'ART. Ciascuna libreria ha la propria classe wrapper.
+In ogni classe vengono forniti i metodi per addestrare e testare i vari modelli. Le librerie attualmente supportare sono: Tensorflow, Keras, PyTorch, MXNet, Scikit-learn,
+XGBoost,LightGBM,CatBoost e Gpy.
+\subsubsection{art.defences}
+Implementazione delle difese presenti nell'ART, suddivise in preprocessor, postprocessor, trainer e transformer.
+
+\begin{itemize}
+    \item Preprocessor \begin{itemize}
+        \item Thermometer encoding
+        \item total variance minimization
+        \item PixelDefend
+        \item Gaussian data augmentation
+        \item Feature squeezing
+        \item Spatial smoothing
+        \item JPEG compression
+        \item Label smoothing
+        \item Virtual adversarial training
+    \end{itemize}
+    \item Postprocessor \begin{itemize}
+        \item Reverse Sigmoid
+        \item Random Noise 
+        \item Class labels
+        \item High Confidence
+        \item Rounding
+    \end{itemize}
+    \item Trainer \begin{itemize}
+        \item Adversarial training
+        \item Adversarial training Madry PGD
+    \end{itemize}
+    \item Transformer \begin{itemize}
+        \item Defensive Distillation
+    \end{itemize}
+\end{itemize}
+\subsubsection{art.detection e art.poison\_detection}
+Implementazione delle metodologie di rilievo degli adversarial examples e del data poisoning. 
+
+\begin{itemize}
+    \item adversarial detection \begin{itemize}
+        \item rilevatore base degli input
+        \item rilevatore addestrato su uno specifico livello
+        \item rilevatore basato su Fast Generalized Subset Scan
+    \end{itemize}
+    \item poisoning detection \begin{itemize}
+        \item rilevazione basata sull'analisi dell'attivazione
+        \item rilevazione basata sulla provenienza dei dati
+    \end{itemize}
+\end{itemize}
+\subsubsection{art.metrics}
+Definizione di alcune metriche per verificare, validare e certificare sicurezza e robustezza dei modelli in analisi. 
+
+\begin{itemize}
+    \item Clique Method Robustness Verification
+    \item Randomized smoothing
+    \item CLEVER
+    \item Loss sensitivity
+    \item Empirical robustness
+\end{itemize}
