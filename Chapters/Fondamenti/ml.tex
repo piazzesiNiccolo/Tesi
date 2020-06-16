@@ -49,7 +49,7 @@ In figura \ref{fig:ml} vengono mostrate le tre maggiori classi. Nel contesto di 
 ad algoritmi di \textbf{Deep Supervised Learning} basati su \textbf{Reti Neurali Convoluzionali}.
 \subsection{Deep Supervised Learning}
 La forma più comune di Machine Learning è il supervised learning. Consideriamo il caso in cui si voglia addestrare un classificatore
-che sappia riconoscere i diversi tipi di segnali stradali. Si colleziona un grosso dataset composto da immagini di segnali stradali, ciascuno di esso con la rispettiva categoria(stop, limite di velocità
+che sappia riconoscere i diversi tipi di segnali stradali. Si colleziona un dataset composto da immagini di segnali stradali, ciascuno di esso con la rispettiva categoria(stop, limite di velocità
 divieto di sosta ecc.). Queste immagini compongono il \textbf{training set}. Durante l'apprendimento, vengono mostrate alla macchina  le immagini del training set. Per ciascuna immagine l'algoritmo produce un output della forma di un vettore di punteggi, uno per ogni categoria.
 Si calcola una funzione che misura l'errore(\textbf{loss function}) fra l'output prodotto e l'output desiderato. In base all'errore commesso l'algoritmo modifica dei paramentri interni, detti pesi, 
 in modo da ridurlo. Per aggiustare il vettore dei pesi in modo corretto , l'algoritmo di apprendimento utilizza una tecnica detta \emph{Gradient Descent}. Ad ogni errore commesso, il vettore dei pesi viene aggiustato nella direzione di massima decrescita dell'errore, fino a raggiungere un minimo locale. La fase di addestramento termina quando si raggiunge il minimo errore possibile, calcolato come la media della funzione di errore su ogni immagine del dataset.
@@ -62,10 +62,10 @@ la capacità di generalizzazione della macchina, andando a controllare la corret
   \label{fig:sup}
 \end{figure}
 
-Una grossa fetta delle applicazioni pratiche utilizza classificatori lineari su caratteristiche modellate a mano. 
+Una buona fetta delle applicazioni pratiche utilizza classificatori lineari su caratteristiche modellate a mano. 
 Un classificatore binario calcola una somma pesata delle componenti del cosidetto \textbf{feature vector}. Se la somma è sopra una certa soglia, 
 l'input è classificato in una certa classe. I classificatori lineari suddividono lo spazio degli input in semplici sottoregioni dette iperpiani, ma contesti come il riconoscimento di immagini o il riconoscimento vocale hanno
-bisogno di modelli più complessi, capaci di rilevare  minuscole variazioni su caratteristiche importanti(\textbf{selettività}) e di ignorare anche grosse variazioni su caratteristiche irrilevanti al contesto, come ad esempio una rotazione dell'immagine(\textbf{invarianza}). La scelta delle caratteristiche rilevanti è quindi una
+bisogno di modelli più complessi, capaci di rilevare  minuscole variazioni su caratteristiche importanti(\textbf{selettività}) e di ignorare anche grandi variazioni su caratteristiche irrilevanti al contesto, come ad esempio una rotazione dell'immagine(\textbf{invarianza}). La scelta delle caratteristiche rilevanti è quindi una
 fase fondamentale del processo di learning. Tradizionalmente, la scelta delle features veniva costruita direttamente dagli sviluppatori, il che comportava una grande richiesta di abilità ingegneristica e di competenza nel dominio di lavoro.
 Grazie al Deep  Learning  il processo di estrazioni di features rilevanti viene automatizzato con una procedura di apprendimento a scopo generale.
 Un'architettura di deep learning è formata da uno stack multilivello di moduli elementari, tutti(o la maggior parte) sottoposti a learning, e la maggior parte dei quali
