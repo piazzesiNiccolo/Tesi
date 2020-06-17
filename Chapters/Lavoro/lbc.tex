@@ -1,10 +1,10 @@
 \section{Il modello scelto}
 Per semplicità implementativa è stato scelto un modello preaddestrato. La scelta è ricaduta su Learning By Cheating(LBC) \cite{lbc}. LBC utilizza l'imitation learning come
-approccio e divide la fase di addestramento in due fasi: \begin{itemize}
+approccio e divide la fase di addestramento in due PARTi: \begin{itemize}
     \item nella prima viene addestrato un agente privilegiato sulla base di traiettorie di esperti. Questo agente ha accesso a tutte le informazioni 
     dell'ambiente circostante(layout ambientale, posizione di ogni altro partecipante). Agisce sull'ambiente con una vista dall'alto(birdview).
     \item nella seconda fase l'agente privilegiato fa da supervisore per l'addestramento di un agente sensorimotore. Questo ha accesso soltanto alle informazioni dei
-    propri sensori(una camera RGB frontale). Viene addestrato per imitare l'agente privilegiato
+    propri sensori(una camera RGB frontale). Viene addestrato per imitare l'agente privilegiato.
 \end{itemize}
 L'apprendimento è stato suddiviso in due fasi per separare due compiti: imparare ad \emph{agire}, compito dell'agente privilegiato e imparare a \emph{vedere}, compito dell'agente sensorimotore.
 Tale suddivisione porta i seguenti vantaggi:\begin{itemize}

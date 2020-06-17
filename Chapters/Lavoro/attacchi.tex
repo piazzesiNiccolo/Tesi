@@ -8,6 +8,9 @@ Tra gli attacchi analizzati ne abbiamo individuati tre di particolare interesse:
     \item Adversarial Patch
     \item Spatial Transformation
     \item HopSkipJump
+    \item Basic Iterative Method
+    \item NewtonFool
+    \item 
 \end{itemize}
 \subsection{Adversarial Patch} 
 \begin{figure}[h]
@@ -19,7 +22,7 @@ Tra gli attacchi analizzati ne abbiamo individuati tre di particolare interesse:
 indipendente dalla immagine su cui viene generata. La patch generata può essere applicata direttamente alle immagini ma l'utilizzo più interessante è senza dubbio la stampa e l'applicazione di tale patch
 ad oggetti fisici. In questo caso la patch potrebbe essere distribuita attraverso internet, stampata, e utiilizzata da un qualsiasi attaccante. Questo attacco è profondamente atipico rispetto
 ai normali evasion attacks. La perturbazione è infatti di grandi dimensioni e questo potrebbe sembrare controintuitivo rispetto a ciò che sappiamo di tali attacchi. Ma il vantaggio principale
-sta proprio nella sua natura unica. Una grande perturbazione è "resistente" anche rispetto ai normali metodi di difesa che si concentrano sulle piccole perturbazioni, ma che possono essere annullate in 
+sta proprio nella sua natura unica: una grande perturbazione è "resistente" anche rispetto ai normali metodi di difesa che si concentrano sulle piccole perturbazioni, ma che possono essere annullate in 
 casi così estremi.
 \subsection{Spatial Transformation}
 \begin{figure}[h]
@@ -38,3 +41,27 @@ non sempre appaiono perfettamente centrati).
 \end{figure}
 È un attacco blackbox e necessita solo delle classi di output del modello. Parte da una grande perturbazione e punta a ridurla al minimo mantenendo comunque l'errore di classificazione.
 La perturbazione viene ridotta attraverso diverse iterazioni di ricerca binaria. Ciascuna iterazione individua una nuova perturbazione valida, più "piccola" della precedente.
+\subsection{Basic Iterative Method}
+\cite{bim}Versione iterativa del Fast Gradient Method. Tale metodo genera una perturbazione risolvendo il problema di massimizzare la loss function con la seguente equazione:
+
+\[X^{adv} = X + \epsilon sign(\nabla _{X}J(X,y_{true}))\]
+
+Nel BIM  questa operazione viene ripetuta per un numero arbitrario di iterazioni, andando a clippare la perturbazione generata ad ogni passo  in modo da restare
+all'interno dei limiti predisposti dall'iperparametro $\epsilon$.
+
+\[X^{adv}_{0} = X, X^{adv}_{N+1} = Clip_{X,\epsilon}\{ X^{adv}_{N} + \alpha sign(\nabla _{X}J(X^{adv}_{N},y_{true})) \}\]
+
+$\alpha$ indica di quanto è stato modificato un pixel ad ogni passo(in questo caso $\alpha=1$)
+\subsection{NewtonFool}
+\cite{newton}
+Si assuma che  il classificatore $F(x)$ sia della forma $arg max_l F_s(x)$ e che l'output $F_s$ sia disponibile all'attaccante. Se $F(x_0) = l \in C$ per un qualche  input $x_0$, allora $F^l_s$ è la maggiore probabilità
+in $F_s(x_0)$. L'attacco consiste nel trovare un piccolo \textbf{d} per cui $F^l_s(x_0 + d) \approx 0$. L'equazione viene risolta usando il metodo di Newton
+per la risoluzione di equazioni non lineari, da cui il nome.
+
+\subsection{Fattibilità degli attacchi scelti su veicoli a guida autonoma}
+Nel contesto di questo lavoro iniettare un attacco si riduce a modificare il codice del modello LearningByCheating, di cui abbiamo l'accesso completo. Nel  mondo reale invece, di solito è necessario prima assumere il controllo della parte del  veicolo che ci permetta di applicare gli attacchi scelti.
+Per quattro dei cinque attacchi scelti(hopskipjump,spatial transformation, basic iterative method, newtonfool), iniettarli in un veicolo significa ottenere il controllo del canale
+di comunicazione fra camera e l'unità di elaborazione centrale, nella quale è presente il modello decisionale. Così facendo si potrebbero  modificare gli input prima che essi entrino
+all'interno del modello stesso. Questo potrebbe essere realizzato attraverso degli script che sfruttino possibili vulnerabilità del protocollo di comunicazione usato o errori di programmazione.
+Per l'attacco Adversarial Patch invece non c'è bisogno  di ottenere il controllo diretto del veicolo. Come detto in precedenza, un attaccante potrebbe generare
+una patch in modo indipendente(o addirittura scaricarla da internet) e applicarla sugli oggetti riconosciuti abitualmente da un veicolo(segnali stradali, semafori, fiancate di altre auto ecc.).
