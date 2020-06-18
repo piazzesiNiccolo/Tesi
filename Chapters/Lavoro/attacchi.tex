@@ -4,13 +4,12 @@ Tra gli attacchi presenti nell'ART sono stati analizzati solamente gli evasion a
     \item gli extraction attacks sono stati esclusi in quanto LearningByCheating è open-source mentre questo tipo di attacchi sono rilevanti quando si ha a che fare
     con algoritmi proprietari
 \end{itemize}
-Tra gli attacchi analizzati ne abbiamo individuati tre di particolare interesse:\begin{itemize}
+Tra gli attacchi analizzati ne abbiamo individuati cinque di particolare interesse:\begin{itemize}
     \item Adversarial Patch
     \item Spatial Transformation
     \item HopSkipJump
     \item Basic Iterative Method
-    \item NewtonFool
-    \item 
+    \item NewtonFool 
 \end{itemize}
 \subsection{Adversarial Patch} 
 \begin{figure}[h]
@@ -65,3 +64,7 @@ di comunicazione fra camera e l'unità di elaborazione centrale, nella quale è 
 all'interno del modello stesso. Questo potrebbe essere realizzato attraverso degli script che sfruttino possibili vulnerabilità del protocollo di comunicazione usato o errori di programmazione.
 Per l'attacco Adversarial Patch invece non c'è bisogno  di ottenere il controllo diretto del veicolo. Come detto in precedenza, un attaccante potrebbe generare
 una patch in modo indipendente(o addirittura scaricarla da internet) e applicarla sugli oggetti riconosciuti abitualmente da un veicolo(segnali stradali, semafori, fiancate di altre auto ecc.).
+\subsection{Attacchi effettivamente iniettati}
+Gli attacchi  descritti sono stati tutti iniettati eccetto per Adversarial Patch. La motivazione è di tipo pratico: per poter implementarlo correttamente
+avremmo dovuto modificare direttamente dei modelli del simulatore ed applicarci la patch. Questo avrebbe comportato l'utilizzo diretto degli strumenti
+per la modellazione 3D forniti dall'Unreal Engine. Essendo tutto ciò al di fuori degli scopi di questa tesi l'attacco è stato scartato.

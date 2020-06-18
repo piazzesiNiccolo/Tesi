@@ -1,0 +1,26 @@
+\myChapter{Conclusioni e sviluppi}
+In questa tesi abbiamo studiato l'iniezione di adversarial attacks su modelli di guida autonoma basati su reti neurali convoluzionali(CNN). In particolare
+abbiamo utilizzato la libreria python Adversarial Robustness Toolbox(ART). Questa libreria fornisce vari attacchi per studiare la robustezza di un
+modello decisionale. Abbiamo studiato gli attacchi presenti nell'ART  e individuato quali di essi fosse interessante applicare a un modello.\\
+
+Il  modello  scelto per l'iniezione è stato LearningByCheating(LBC). LBC è un modello di guida autonoma che gira sul simulatore 
+CARLA. La sperimentazione si è divisa in due fasi:\begin{itemize}
+    \item nella prima abbiamo analizzato il codice di LBC per trovare il punto  in cui iniettare gli attacchi scelti
+    \item nella seconda abbiamo fatto guidare LBC su dei percorsi prestabiliti e raccolto i risultati
+\end{itemize} 
+
+La seconda fase si è divisa in più parti:\begin{itemize}
+    \item nella prima LBC ha guidato sui percorsi senza nessun attacco iniettato
+    \item nelle parti successive, abbiamo rieseguito le run, ciascuna volta con un diverso attacco iniettato.
+\end{itemize}
+
+I risultati raccolti hanno confermato la vulnerabilità dei CNN agli adversarial attacks. Nelle run con gli attacchi iniettati notato un forte calo nella stabilità della guida e un aumento delle collisioni.
+Alcuni attacchi si sono rilevati più efficaci di altri, ma tutti hanno causato il fallimento di alcuni dei percorsi.\\
+
+Il lavoro svolto si presta a svariati sviluppi e approfondimenti, due  dei quali sono:\begin{itemize}
+    \item lo studio e lo sviluppo di difese dagli adversarial attacks. La libreria ART fornisce anche l'implementazione di metodi per rendere più robuste le CNN.
+    Queste difese potrebbero essere inserite all'interno di un modello e valutate per la loro efficacia.
+    \item studio e sviluppo di rilevatori di input modificati. Gli adversarial attacks modificano gli input in modo da essere impercettibili ad occhio umano. Una 
+    soluzione a questo problema potrebbe essere la creazione di un rilevatore che invece riesca a individuare eventuali modifiche. Anche in questo caso
+    la libreria ART  fornisce strumenti adatti per lo scopo.
+\end{itemize}
