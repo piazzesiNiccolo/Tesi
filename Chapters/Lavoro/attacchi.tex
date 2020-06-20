@@ -18,11 +18,20 @@ Tra gli attacchi analizzati ne abbiamo individuati cinque di particolare interes
     \label{fig:patch}
 \end{figure}
 In questo attacco si genera una patch che, quando entra nel campo visivo di un classificatore, causa un'errore di misclassificazione. Lo sviluppo dell'attacco è 
-indipendente dalla immagine su cui viene generata. La patch generata può essere applicata direttamente alle immagini ma l'utilizzo più interessante è senza dubbio la stampa e l'applicazione di tale patch
+indipendente dalla immagine su cui viene generata. La patch generata può essere applicata direttamente alle immagini ma l'utilizzo più interessante è senza dubbio la stampa e l'applicazione
 ad oggetti fisici. In questo caso la patch potrebbe essere distribuita attraverso internet, stampata, e utiilizzata da un qualsiasi attaccante. Questo attacco è profondamente atipico rispetto
 ai normali evasion attacks. La perturbazione è infatti di grandi dimensioni e questo potrebbe sembrare controintuitivo rispetto a ciò che sappiamo di tali attacchi. Ma il vantaggio principale
 sta proprio nella sua natura unica: una grande perturbazione è "resistente" anche rispetto ai normali metodi di difesa che si concentrano sulle piccole perturbazioni, ma che possono essere annullate in 
-casi così estremi \cite{patch}.
+casi così estremi \cite{patch}. 
+
+Per creare la patch, viene eseguita una fase di training ed è quindi necessario l'accesso diretto al modello usato per la generazione.  Per usare questo attacco è richiesto specificare questi parametri:\begin{itemize}
+    \item \textbf{rotation\_max}: la massima rotazione in una delle due direzione, espressa come valore nel range [0, 180];
+    \item \textbf{scale\_min}: minima scalatura applicata alla patch. Il valore deve essere tra 0 e 1 e più piccolo di scale\_max;
+    \item \textbf{scale\_max}: massima scalatura applicata alla patch. Il valore deve essere tra 0 e 1 e più grande di scale\_min;
+    \item \textbf{learning rate}: il ritmo di apprendimento dell'ottimizzazione;
+    \item \textbf{max\_iter}: massimo numero di iterazioni;
+    \item \textbf{batch\_size}: dimensione del gruppo sul quale generare le perturbazioni.
+\end{itemize}
 \subsection{Spatial Transformation}
 \begin{figure}[h]
     \includegraphics[width = \linewidth]{spat.png}
@@ -30,8 +39,15 @@ casi così estremi \cite{patch}.
     \label{fig:spat}
 \end{figure}
 La perturbazione generata è di tipo spaziale. Si cercano i parametri $(\delta u,\delta v,\theta)$ per cui un'immagine ruotata di un angolo $\theta$ e traslata di 
-$(\delta u, \delta v)$ pixel viene classificata in modo errato, massimizzando la loss function. Questo tipo di perturbazioni può essere generato in modo "maligno", ma può anche essere causato da perturbazioni naturali(gli oggetti reali
-non sempre appaiono perfettamente centrati) \cite{spatial}.
+$(\delta u, \delta v)$ pixel viene classificata in modo errato. Questo tipo di perturbazioni può essere generato in modo "maligno", ma può anche avere cause naturali(gli oggetti reali
+non sempre appaiono perfettamente centrati) \cite{spatial}. Il modello attaccato viene interrogato in modalità blackbox.
+I parametri modificabili sono:\begin{itemize}
+    \item \textbf{max\_translation}: la traslazione massima in qualsiasi direzione, espressa come percentuale dell'immagine;
+    \item \textbf{num\_translations}: il numero di traslazioni da effettuare;
+    \item \textbf{max\_rotation}: la massima rotazione in una delle due direzione, espressa come valore nel range [0, 180];
+    \item \textbf{num\_rotations}: il numero di rotazioni da applicare.
+\end{itemize}
+Durante la sperimentazione, i parametri sono stati impostati su questi valori: max\_translation = 80\%, num\_translations = 1, max\_rotation = 160, num\_rotations = 1.
 \subsection{HopSkipJump}
 \begin{figure}[h]
     \includegraphics[width=\linewidth]{hop.png}
@@ -40,22 +56,60 @@ non sempre appaiono perfettamente centrati) \cite{spatial}.
 \end{figure}
 Parte da una grande perturbazione e punta a ridurla al minimo mantenendo comunque l'errore di classificazione.
 La perturbazione viene ridotta attraverso diverse iterazioni di ricerca binaria. Ciascuna iterazione individua una nuova perturbazione valida, più "piccola" della precedente \cite{hopskip}.
+La "distanza" fra l'input originale e la perturbazione viene calcolata attraverso la norma.
+È un attacco blackbox. I parametri da impostare sono: \begin{itemize}
+    \item \textbf{targeted}: parametro booleano. Se impostato a True, l'input è modificato  per essere classificato in una specifica categoria;
+    \item \textbf{norm}: norma da usare. Dei possibili valori sono 2 per la norma euclidea oppure $\infty$ per la norma infinito;
+    \item \textbf{max\_iter}: massimo numero di iterazioni;
+    \item \textbf{max\_eval}: massimo numero di valutazioni per approssimare il gradiente;
+    \item \textbf{init\_eval}: valore iniziale di valutazioni per approssimare il gradiente;
+    \item \textbf{init\_size}: massimo numero di prove per generare l'input modificato.
+\end{itemize}
+Durante la sperimentazione, i parametri sono stati impostati su questi valori: targeted = False, norm=2, max\_iter = 10, max\_eval = 1000, init\_eval = 100, init\_size = 100.
 \subsection{Basic Iterative Method}
-Versione iterativa del Fast Gradient Method. Tale metodo genera una perturbazione risolvendo il problema di massimizzare la loss function con la seguente equazione:
+È la versione iterativa di un altro attacco, il Fast Gradient Method. Il Fast Gradient Method genera una perturbazione risolvendo il problema di massimizzare l'errore causato con la seguente equazione:
 
 \[X^{adv} = X + \epsilon sign(\nabla _{X}J(X,y_{true}))\]
 
-Nel BIM  questa operazione viene ripetuta per un numero arbitrario di iterazioni, andando a clippare la perturbazione generata ad ogni passo  in modo da restare
+Nel Basic Iterative Method  questa operazione viene ripetuta per un numero arbitrario di iterazioni.  La perturbazione generata ad ogni passo viene scalata in modo da restare
 all'interno dei limiti predisposti dall'iperparametro $\epsilon$ \cite{bim}.
 
 \[X^{adv}_{0} = X, X^{adv}_{N+1} = Clip_{X,\epsilon}\{ X^{adv}_{N} + \alpha sign(\nabla _{X}J(X^{adv}_{N},y_{true})) \}\]
 
-$\alpha$ indica di quanto è stato modificato un pixel ad ogni passo(in questo caso $\alpha=1$)
+$\alpha$ indica di quanto è stato modificato un pixel ad ogni passo(in questo caso $\alpha=1$). È un attacco whitebox, quindi è necessario che l'attaccante abbia accesso completo al modello. I parametri modificabili sono:\begin{itemize}
+    \item \textbf{eps}: perturbazione massima;
+    \item \textbf{eps\_step}: modifica da applicare ad ogni iterazione;
+    \item \textbf{max\_iter}: massimo numero di iterazioni;
+    \item \textbf{targeted}: parametro booleano. Se impostato a True, l'input è modificato  per essere classificato in una specifica categoria;
+    \item \textbf{batch\_size}: dimensione del gruppo sul quale generare le perturbazioni.
+\end{itemize}
+Durante la sperimentazione, i parametri sono stati impostati su questi valori: eps = 0.2, eps\_step = 0.1,max\_iter = 20. targeted = False, batch\_size = 1.
+
 \subsection{NewtonFool}
 
 Si assuma che  il classificatore $F(x)$ sia della forma $arg max_l F_s(x)$ e che l'output $F_s$ sia disponibile all'attaccante. Se $F(x_0) = l \in C$ per un qualche  input $x_0$, allora $F^l_s$ è la maggiore probabilità
 in $F_s(x_0)$. L'attacco consiste nel trovare un piccolo \textbf{d} per cui $F^l_s(x_0 + d) \approx 0$. L'equazione viene risolta usando il metodo di Newton
-per la risoluzione di equazioni non lineari, da cui il nome \cite{newton}.
+per la risoluzione di equazioni non lineari, da cui il nome \cite{newton}. È un  attacco whitebox quindi anche in questo caso l'accesso all'intero modello è un requisito obbligatorio. Possono essere modificati i seguenti parametri: \begin{itemize}
+    \item \textbf{max\_iter}: massimo numero di iterazioni;
+    \item \textbf{eta}: coefficiente $\eta$, moltiplicato all'input originale per definire il limite superiore della perturbazione.
+    \item \textbf{batch\_size}: dimensione del gruppo sul quale generare le perturbazioni;
+   \end{itemize}
+Durante la sperimentazione, i parametri sono stati impostati su questi valori: max\_iter = 10, eta = 0.01 , batch\_size = 1.
+
+\subsubsection{Sintassi di utilizzo}
+L'ART fornisce una sintassi estremamente semplice per usare gli attacchi implementati. Se per esempio si vuole attaccare un modello M, sviluppato in PyTorch, con l'attacco Spatial
+Transformation Attack, servirà eseguire queste linee di codice:\begin{lstlisting}[language=Python]
+    x = next_input() #next_input e' una pseudo funzione, l'input puo' essere ottenuto in vari modi
+    classifier = PyTorchClassifier(model=M, loss=criterion,optimizer=optimizer, input_shape=(3, 160, 384)) 
+    # i parametri loss, optimizer e input_shape cambiano a seconda del modello
+    attack = SpatialTransformation(classifier=classifier,
+                                    max_translation=80,
+                                    num_translations=1,
+                                    max_rotation=160,
+                                    num_rotations=1)
+    
+    adversarial_x = attack.generate(x)
+\end{lstlisting}
 
 \subsection{Fattibilità degli attacchi scelti su veicoli a guida autonoma}
 Nel contesto di questo lavoro, iniettare un attacco si riduce a modificare il codice del modello LearningByCheating, di cui abbiamo l'accesso completo. 
@@ -75,3 +129,4 @@ avremmo dovuto modificare direttamente dei modelli del simulatore ed applicarci 
 viene spiegato come aggiungere nuovi modelli. In breve, utilizzando l'editor Unreal va creato un mesh e importato in CARLA insieme 
 a una descrizione JSON. Purtroppo abbiamo trovato difficoltà nell'utilizzo dell'editor, soprattutto nell'applicare la patch su un asset preesistente. Abbiamo dunque
 ripiegato sul primo approccio, modificando il codice di LearningByCheating e iniettando gli altri quattro attacchi.
+

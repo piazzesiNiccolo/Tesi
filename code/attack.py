@@ -35,21 +35,21 @@ def load_attack(classifier,attack):
 def load_hopskip(classifier):
     return HopSkipJump(classifier=classifier,
                         targeted=False,
-                        max_iter=0,
+                        max_iter=10,
                         max_eval=1000,
                         init_eval=10)
 
 def load_newton(classifier):
-    return NewtonFool(classifier,max_iter=10)
+    return NewtonFool(classifier,max_iter=10, batch_size = 1)
 
 def load_bid(classifier):
-    return BasicIterativeMethod(classifier=classifier, max_iter=20, eps=0.2 )
+    return BasicIterativeMethod(classifier=classifier, max_iter=20, eps=0.2,batch_size=1 )
 
 def load_spatial(classifier):
     return SpatialTransformation(classifier=classifier,
                                     max_translation=80,
                                     num_translations=1,
-                                    max_rotation=230,
+                                    max_rotation=160,
                                     num_rotations=1)
 
 

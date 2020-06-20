@@ -41,6 +41,18 @@ Il confronto  è stato fatto sia in termini di percorsi portati a termine, sia a
     \caption{risultati golden run}
 Nella golden run tutti i percorsi vengono completati con successo. La traiettoria del veicolo è stabile e un solo semaforo rosso in totale è stato ignorato.
 \end{table}
+\begin{figure}[h!]
+    \centering
+    \parbox{6cm}{
+    \includegraphics[width=6cm]{GOLD1.png}
+    \label{fig:gold1}}
+    \qquad
+    \begin{minipage}{6cm}
+    \includegraphics[width=6cm]{GOLD2.png}
+    \label{fig:gold2}
+    \end{minipage}
+    \label{fig:goldrun}
+    \end{figure}
 \newpage
 \subsection{Iniezione di HopSkipJump (HSJ)}
 \begin{table}[h!]
@@ -171,11 +183,11 @@ caso la macchina cambia completamente comportamento, diventando inutilizzabile.
         \hline
         Attacco        &   Run completate     &   stabilità     &  semafori ignorati        & collisioni & timeout\\
         \hline
-        Nessuno       &  12/12               &    ottima         &  1                        & 0 & 0 \\
-        HSJ            &  6/12                &   bassa         &  9                        & 6  & 0 \\
-        STA            &  7/12                &   buona         &  0                        & 4  & 1 \\
-        BIM            &  0/12                &   nulla         &  N/D                      & 12 & 0\\
-        NF             &  3/12                &   bassa         &   13                      & 9  & 0 \\
+        Nessuno        &  12/12               &   ottima        &  1                        & 0          & 0 \\
+        HSJ            &  6/12                &   bassa         &  9                        & 6          & 0 \\
+        STA            &  7/12                &   buona         &  0                        & 4          & 1 \\
+        BIM            &  0/12                &   nulla         &  N/D                      & 12         & 0\\
+        NF             &  3/12                &   bassa         &   13                      & 9          & 0 \\
         \hline
     \end{tabular}
     \caption{tabella riassuntiva}
