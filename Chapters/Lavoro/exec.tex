@@ -1,11 +1,11 @@
 \section{Iniezione degli attacchi}
-LearningByCheating fornisce un modulo(run\_benchmark) grazie al quale valutare un agente sensorimotore(benchmark\_agent) su una serie di percorsi prestabiliti.
+LearningByCheating fornisce un modulo (run\_benchmark) grazie al quale valutare un agente sensorimotore (benchmark\_agent) su una serie di percorsi prestabiliti.
 In questi percorsi l'agente deve arrivare a un punto della mappa preciso entro un tempo limite. Per ciascun percorso viene tenuto traccia dei semafori rossi ignorati, delle invasioni di corsia e delle collisioni. Inoltre viene registrato un video che mostra il veicolo mentre percorre il tragitto.
-Nel video vengono mostrati anche gli waypoints generati dalla rete neurale in ogno momento. In \ref{run} viene definito il loop principale di un percorso.
-Ad ogni "istante"(in realtà $env.tick()$ aspetta l'esecuzione di un'azione)  l'agente riceve le osservazioni dai sensori($env.get\_observations()$), le passa alla 
-rete neurale che decide l'azione($agent.run\_step(observations)$) e applica l'azione restituita attraverso i controllori PID($env.apply\_control(control)$). Il percorso termina 
+Nel video vengono mostrati anche gli waypoints generati dalla rete neurale in ogni momento. Nel Listing \ref{run} viene definito il loop principale di un percorso.
+Ad ogni intervallo di simulazione ( $env.tick()$ aspetta l'esecuzione di un'azione),  l'agente riceve le osservazioni dai sensori ($env.get\_observations()$), le passa alla 
+rete neurale che decide l'azione ($agent.run\_step(observations)$) e applica l'azione restituita attraverso i controllori ($env.apply\_control(control)$). Il percorso termina 
 se il veicolo arriva a destinazione, scade il tempo, oppure avviene una collisione. L'ultima condizione non era presente nel codice originale ma è stata aggiunta per risparmiare tempo sulla singola run nel caso in cui avvenga un incidente. Per essere efficaci gli attacchi devono modificare gli input 
-\textbf{prima} che arrivino alla rete, quindi la riga $agent.run\_step(observations)$ è stata individuata come il punto giusto nel quale iniettare gli attacchi prescelti
+\textbf{prima} che arrivino alla rete, quindi la riga $agent.run\_step(observations)$ è stata individuata come il punto giusto nel quale iniettare gli attacchi prescelti.
 
 $run\_step$ è definito nella classe ImageAgent del  modulo $image$(\ref{img}).
 
@@ -19,16 +19,17 @@ Il metodo $generate$ attua la modifica vera e propria dell'immagine. Il campo $s
     self.adv = load_model('/home/piazzesi/Desktop/carla_lbc/ckpts/image')
     self.attack = load_attack(self.adv, 'hopskipjump')
 \end{lstlisting}
-Le funzioni $load\_model$ e $load\_attack$ sono state implementate nel modulo $attack$\ref{att}. Si nota come la definizione  degli attacchi corrisponde semplicemente a una chiamata
+Le funzioni $load\_model$ e $load\_attack$ sono state implementate nel modulo $attack$ (Listing \ref{att}). Si nota come la definizione  degli attacchi corrisponde semplicemente a una chiamata
 di un costruttore. L'implementazione vera e propria  è fornita direttamente dai moduli dell'ART.
 
-Le ultime modifiche sono state attuate nel metodo $forward$ della classe $ImagePolicyModelSS$\ref{for}. Questa classe è l'implementazione della rete neurale e in $forward$ avviene il processo decisionale.
+Le ultime modifiche sono state attuate nel metodo $forward$ della classe $ImagePolicyModelSS$ (Listing\ref{for}). Questa classe è l'implementazione della rete neurale e in $forward$ avviene il processo decisionale.
 $forward$ viene anche usato nel metodo $generate$ per realizzare la perturbazione. Il problema è che $generate$ prende come unico parametro l'immagine RGB mentre $forward$ usa anche velocità e comando.
 La soluzione scelta è stata la seguente: la velocità e il comando non vengono passati a $forward$ attraverso i  parametri di input, ma vengono recuperati  dalle variabili globali $\_speed$ e $\_command$ definite in $run\_step$. Usare variabili globali
 non è sicuramente una pratica di buona programmazione, ma ha permesso l'esecuzione degli attacchi senza problemi. Infine , sempre per garantire la compatibilità tra ART  e modello è stata aggiunta la riga:
 \begin{lstlisting}[language=Python]
     location_pred = torch.reshape(location_pred,(1,10))
 \end{lstlisting}
+La modifica è necessaria perchè il tensore location\_pred è della forma [2, 5] (bidimensionale con 5 elementi per dimensione). L'ART non supporta output multidimensionali, dunque il tensore viene convertito nella forma [1, 10].
 \lstinputlisting[language=Python,caption=loop base di una run,label=run]{code/run_benchmark.py}
 \lstinputlisting[language=Python, caption=ImageAgent,label=img]{code/image.py}
 \lstinputlisting[language=Python,caption=attack.py,label=att]{code/attack.py}

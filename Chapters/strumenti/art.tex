@@ -1,10 +1,10 @@
 \newpage
-\section{Adversarial Robustness Toolbox}\cite{art2018}
+\section{Adversarial Robustness Toolbox}
 L'Adversarial Robustness Toolbox(ART) è una libreria Python che aiuta sviluppatori e ricercatori nella difesa dei modelli di machine learning dagli adversarial examples, rendendoli più sicuri 
 ed affidabili. Creare tali difese significa certificare e verificare la robustezza con metodi come il preprocessing degli input,  l'aumento del training set
 con esempi adversarial e fare uso di metodologie di rilevamento di input modificati. L'ART fornisce degli attacchi grazie ai quali valutare la sicurezza dei modelli
 testati. Nella libreria sono presenti interfacce standard per le librerie di machine learning più popolari. L'architettura dell'ART rende semplice combinare i vari approcci  ed è progettato sia per i ricercatori che vogliono eseguire esperimenti su larga scala di benchmarking di attacchi e difese, sia per gli sviluppatori 
-che vogliono rilasciare applicazioni che fanno uso di machine learning in modo sicuro.
+che vogliono rilasciare applicazioni che fanno uso di machine learning in modo sicuro \cite{art2018}.
 \subsection{La struttura della libreria}
 L'ART è diviso in vari sottomoduli:
 \begin{itemize}
@@ -17,59 +17,34 @@ L'ART è diviso in vari sottomoduli:
 \end{itemize}
 
 \subsubsection{art.attacks}
-Implementazione degli attacchi presenti nella libreria. Gli attacchi sono divisi in tre categorie:\textbf{Evasion Attacks},
-\textbf{Poisoning Attacks} e \textbf{Extraction Attacks}.
+Modulo nel quale sono definite  le classi che implementano gli attacchi forniti. Ogni classe eredita dalla classe base  $Attack$ il metodo $generate$: Questo metodo ha come parametro l'array x contenente l'input originale e restituisce
+un array contenente l'input perturbato. L'implementazione concreta di $generate$ varia a seconda dell'attacco. Gli attacchi sono divisi in tre categorie:\textbf{Evasion Attacks},
+\textbf{Poisoning Attacks} e \textbf{Extraction Attacks}. 
 \paragraph{Evasion Attacks}
 Si applica una modifica impercettibile all'input per causare la misclassificazione  del modello attaccato. Si distinguono in attacchi whitebox  e attacchi blackbox a seconda che i parametri del modello
-siano conosciuti o meno.
+siano conosciuti o meno. Al momento della scrittura, gli evasion attacks presenti nella libreria sono:
+ Threshold Attack, Pixel Attack, HopSkipJump Attack, High Confidence Low Uncertainty adversarial examples, Projected Gradient Descent, NewtonFool, Elastic net attack,
+Spatial transformation attack, Query-efficient black-box attack, Zeroth-order optimization attack, Decision-based attack / Boundary attack, Adversarial patch, Decision tree attack,
+Carlini \& Wagner(C\&W) L\_2 and L\_inf attacks, Basic iterative method, Jacobian saliency map, Universal perturbation, DeepFool, Virtual adversarial method, Fast gradient method
 
-\begin{itemize}
-    \item Threshold Attack
-    \item Pixel Attack
-    \item HopSkipJump Attack
-    \item High Confidence Low Uncertainty adversarial examples
-    \item Projected Gradient Descent
-    \item NewtonFool
-    \item Elastic net attack
-    \item Spatial transformation attack
-    \item Query-efficient black-box attack
-    \item Zeroth-order optimization attack
-    \item Decision-based attack / Boundary attack
-    \item Adversarial patch
-    \item Decision tree attack
-    \item Carlini \& Wagner(C\&W) L\_2 and L\_inf attacks
-    \item Basic iterative method
-    \item Jacobian saliency map
-    \item Universal perturbation
-    \item DeepFool
-    \item Virtual adversarial method
-    \item Fast gradient method
-\end{itemize} 
 \paragraph{Poisoning Attacks}
 Si modifica il training set per ridurre l'accuratezza del processo di learning. Il poisoning include la modifica degli esempi nel dataset, l'iniezione di dati "maligni" o la modifica
-delle etichette. 
+delle etichette. Al momento della scrittura, i poisoning attacks presenti nella libreria sono: Poisoning Attack on SVM, Backdoor Attack
 
+\paragraph{Extraction Attacks} Si cerca di sviluppare un modello sulla base di un modello proprietario e chiuso, "rubando" il comportamento del modello attaccato. Al momento della scrittura, gli extraction attacks presenti nella libreria sono: 
+Functionally Equivalent Extraction, Copycat Confidence, KnockoffNets
 
-\begin{itemize}
-    \item Poisoning Attack on SVM
-    \item Backdoor Attack
-\end{itemize}
-\paragraph{Extraction Attacks} Si cerca di sviluppare un modello sulla base di un modello proprietario e chiuso, "rubando" il comportamento del modello attaccato.
-
-\begin{itemize}
-    \item Functionally Equivalent Extraction
-    \item Copycat Confidence
-    \item KnockoffNets
-\end{itemize}
 \subsubsection{art.classifers}
-Implementazione delle interfacce per usare librerie di machine learning esterne insieme all'ART. Ciascuna libreria ha la propria classe wrapper.
-In ogni classe vengono forniti i metodi per addestrare e testare i vari modelli. Le librerie attualmente supportare sono: Tensorflow, Keras, PyTorch, MXNet, Scikit-learn,
-XGBoost,LightGBM,CatBoost e Gpy.
+Modulo nel quale sono definite le classi che permettono di usare l'ART insieme a modelli sviluppati con librerie di Machine Learning esterne.  Le liberie attualmente supportate sono: 
+Tensorflow, Keras, PyTorch, MXNet, Scikit-learn, XGBoost,LightGBM,CatBoost e Gpy. Le classi svolgono il ruolo di "contenitore", fornendo metodi per addestrare e testare i modelli senza dover accedere direttamente
+ad essi.
 \subsubsection{art.defences}
-Implementazione delle difese presenti nell'ART, suddivise in preprocessor, postprocessor, trainer e transformer.
+In questo modulo vengono definite le classi che implementano vari tipi di difese contro gli adversarial attacks. Le difese sono divise in:difese preprocessing, difese postprocessing
+e difese basate su Transformer.
 
-\begin{itemize}
-    \item Preprocessor \begin{itemize}
+\paragraph{Difese preprocessing}
+Difese che agiscono applicando modifiche agli input prima che vengano classificati.
+     \begin{itemize}
         \item Thermometer encoding
         \item total variance minimization
         \item PixelDefend
@@ -80,24 +55,30 @@ Implementazione delle difese presenti nell'ART, suddivise in preprocessor, postp
         \item Label smoothing
         \item Virtual adversarial training
     \end{itemize}
-    \item Postprocessor \begin{itemize}
+
+\paragraph{Difese postprocessing}
+Difese che agiscono modificando l'output generato dal modello.
+\begin{itemize}
         \item Reverse Sigmoid
         \item Random Noise 
         \item Class labels
         \item High Confidence
         \item Rounding
     \end{itemize}
-    \item Trainer \begin{itemize}
+\paragraph{difese basate sul training}
+Difese il cui è obiettivo è rendere più robusto un modello durante la fase di addestramento
+ \begin{itemize}
         \item Adversarial training
         \item Adversarial training Madry PGD
-    \end{itemize}
-    \item Transformer \begin{itemize}
+\end{itemize}
+\paragraph{Difese basate su Transformer}
+Difese che irrobustiscono i modelli a cui sono applicate utilizzando tecniche basate sul modello Transformer.
+    \begin{itemize}
         \item Defensive Distillation
     \end{itemize}
-\end{itemize}
-\subsubsection{art.detection e art.poison\_detection}
-Implementazione delle metodologie di rilievo degli adversarial examples e del data poisoning. 
 
+\subsubsection{art.detection e art.poison\_detection}
+Modulo nel quale vengono definite le classi che permettono la rilevazione di adversarial inputs e  di dataset avvelenati.
 \begin{itemize}
     \item adversarial detection \begin{itemize}
         \item rilevatore base degli input
@@ -110,7 +91,7 @@ Implementazione delle metodologie di rilievo degli adversarial examples e del da
     \end{itemize}
 \end{itemize}
 \subsubsection{art.metrics}
-Definizione di alcune metriche per verificare, validare e certificare sicurezza e robustezza dei modelli in analisi. 
+In questo modulo sono definite alcune metriche per verificare, validare e certificare sicurezza e robustezza dei modelli in analisi. 
 
 \begin{itemize}
     \item Clique Method Robustness Verification

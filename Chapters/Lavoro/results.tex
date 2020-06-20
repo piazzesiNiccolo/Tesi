@@ -25,7 +25,7 @@ La valutazione degli attacchi si è svolta in due fasi:\begin{itemize}
 \end{itemize}
 I risultati prodotti dall'iniezione di ciascun attacco sono stati confrontati con quelli prodotti dalla run pura, in modo da valutarne l'efficacia.
 Il confronto  è stato fatto sia in termini di percorsi portati a termine, sia andando ad analizzare e commentare i video prodotti.
-\subsection{Run Pura}
+\subsection{Golden Run}
 \begin{table}[h]
     \begin{tabular}{|c|c|c|}
         \hline
@@ -38,11 +38,11 @@ Il confronto  è stato fatto sia in termini di percorsi portati a termine, sia a
         Totale                  & 12/12          & 100\% \\
         \hline
     \end{tabular}
-    \caption{risultati run pura}
-Nella run pura tutti i percorsi vengono completati con successo. La traiettoria del veicolo è stabile e un solo semaforo rosso in totale è stato ignorato.
+    \caption{risultati golden run}
+Nella golden run tutti i percorsi vengono completati con successo. La traiettoria del veicolo è stabile e un solo semaforo rosso in totale è stato ignorato.
 \end{table}
 \newpage
-\subsection{Iniezione di HopSkipJump(HSJ)}
+\subsection{Iniezione di HopSkipJump (HSJ)}
 \begin{table}[h!]
     \begin{tabular}{|c|c|c|}
         \hline
@@ -55,13 +55,24 @@ Nella run pura tutti i percorsi vengono completati con successo. La traiettoria 
         TOTALE                  & 6/12           & 50\% \\
         \hline
     \end{tabular}
-    \caption{risultati run  HopSKipJump}
+    \caption{risultati run HopSkipJump}
     \label{tab:hsj}
 \end{table}
  Fallimento parziale del veicolo. Dall'analisi video si nota una guida molto più instabile ma che continua all'incirca
 a seguire il percorso prestabilito. L'instabilità è particolarmente evidente negli waypoints prodotti, che cambiano continuamente posizione anche nei rettilinei. A causa dei problemi elencati
 si nota un aumento dei semafori ignorati, delle uscite fuori strada e delle collisioni con altri oggetti.
-
+\begin{figure}[h]
+    \centering
+    \parbox{6cm}{
+    \includegraphics[width=6cm]{hoprun.png}
+    \label{fig:hop1}}
+    \qquad
+    \begin{minipage}{6cm}
+    \includegraphics[width=6cm]{HOP2.png}
+    \label{fig:hop2}
+    \end{minipage}
+    \label{fig:hoprun}
+    \end{figure}
 \subsection{Iniezione di Spatial Transformation}
 \begin{table}[h!]
     \begin{tabular}{|c|c|c|}
@@ -75,11 +86,23 @@ si nota un aumento dei semafori ignorati, delle uscite fuori strada e delle coll
         TOTALE                  & 7/12           & 0\% \\
         \hline
     \end{tabular}
-    \caption{risultati run Spatial Transformation(STA)}
+    \caption{risultati run Spatial Transformation (STA)}
     \label{tab:sta}
 \end{table}
-Moderato fallimento del veicolo. La traiettoria continuna a essere seguita in modo abbastanza fedele ma la guida risulta più instabile.
-La maggior parte dei percorsi è fallito per il tempo scaduto, ma sono comparse anche delle collisioni
+Moderato fallimento del veicolo. La traiettoria continua a essere seguita in modo abbastanza fedele ma la guida risulta più instabile.
+La maggior parte dei percorsi è fallito per il tempo scaduto, ma sono comparse anche delle collisioni. Nessun semaforo ignorato.
+\begin{figure}[h]
+    \centering
+    \parbox{6cm}{
+    \includegraphics[width=6cm]{STA1.png}
+    \label{fig:sta1}}
+    \qquad
+    \begin{minipage}{6cm}
+    \includegraphics[width=6cm]{STA2.png}
+    \label{fig:sta2}
+    \end{minipage}
+    \label{fig:starun}
+    \end{figure}
 \subsection{Iniezione di Basic Iterative Method(BIM)}
 \begin{table}[h!]
     \begin{tabular}{|c|c|c|}
@@ -98,7 +121,19 @@ La maggior parte dei percorsi è fallito per il tempo scaduto, ma sono comparse 
 \end{table}
 Avviene un fallimento totale del veicolo. In nessuno dei percorsi la macchina inizia a seguire il tragitto, ma invece inizia a sterzare verso destra fino ad uscire di strada
 e  urtare oggetti della mappa.
-\subsection{Iniezione di NewtonFool(NF)}
+\begin{figure}[h]
+    \centering
+    \parbox{6cm}{
+    \includegraphics[width=6cm]{BIM1.png}
+    \label{fig:bim1}}
+    \qquad
+    \begin{minipage}{6cm}
+    \includegraphics[width=6cm]{BIM2.png}
+    \label{fig:bim2}
+    \end{minipage}
+    \label{fig:bimrun}
+    \end{figure}
+\subsection{Iniezione di NewtonFool (NF)}
 \begin{table}[h!]
     \begin{tabular}{|c|c|c|}
         \hline
@@ -115,20 +150,32 @@ e  urtare oggetti della mappa.
     \label{tab:nf}
 \end{table}
 Fallimento grave del veicolo. Il tragitto viene seguito ma con una traiettoria molto instabile. Aumento rilevante dei semafori rossi ignorati e delle collisioni.
+\begin{figure}[h]
+    \centering
+    \parbox{6cm}{
+    \includegraphics[width=6cm]{FOOL1.png}
+    \label{fig:fool1}}
+    \qquad
+    \begin{minipage}{6cm}
+    \includegraphics[width=6cm]{FOOL2.png}
+    \label{fig:fool2}
+    \end{minipage}
+    \label{fig:foolrun}
+    \end{figure}
 \subsection{Sintesi risultati}
-I risultati riassunti nella tabella \ref{tab:ria} ci dimostrano la vulnerabilità del modello considerato agli adversarial attacks. In tutti i casi l'affidabilità del veicolo si è ridotta.
+I risultati riassunti nella Tabella \ref{tab:ria} ci dimostrano la vulnerabilità del modello considerato agli adversarial attacks. In tutti i casi l'affidabilità del veicolo si è ridotta.
 L'attacco che ha causato problemi più gravi è sicuramente Basic Iterative Method. Mentre nelle altre run la traiettoria prestabilita continua ad essere quantomeno seguita, in questo
 caso la macchina cambia completamente comportamento, diventando inutilizzabile.
 \begin{table}[h]
-    \begin{tabular}{|p{1.5cm}|p{2.5cm}|p{2cm}|c|c|}
+    \begin{tabular}{|p{1.5cm}|p{2.5cm}|p{2cm}|p{1.5cm}|c|c|}
         \hline
-        Attacco        &   Run completate     &   stabilità     &  semafori ignorati & collisioni\\
+        Attacco        &   Run completate     &   stabilità     &  semafori ignorati        & collisioni & timeout\\
         \hline
-        Nessuno       &  12/12               &   ottima              &  soltanto uno      & nessuna  \\
-        HSJ            &  6/12                &   bassa               &  circa la metà     & alcune \\
-        STA            &  7/12                &   buona               &  alcuni            & rare \\
-        BIM            &  0/12                &   nulla               &  non arriva ai semafori    & in ogni run \\
-        NF             &  3/12                &   bassa              &   poco meno della metà      & presenti \\
+        Nessuno       &  12/12               &    ottima         &  1                        & 0 & 0 \\
+        HSJ            &  6/12                &   bassa         &  9                        & 6  & 0 \\
+        STA            &  7/12                &   buona         &  0                        & 4  & 1 \\
+        BIM            &  0/12                &   nulla         &  N/D                      & 12 & 0\\
+        NF             &  3/12                &   bassa         &   13                      & 9  & 0 \\
         \hline
     \end{tabular}
     \caption{tabella riassuntiva}

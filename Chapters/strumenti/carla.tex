@@ -1,28 +1,29 @@
-\section{Carla}\cite{carla}
+\section{Carla}
 La ricerca per lo sviluppo della guida autonoma in ambiente urbano è  ostacolato da costi infrastrutturali e dalle difficoltà logistiche. È
 estremamente difficile avere anche solo un veicolo(che sarebbe comunque insufficiente) a disposizione per il testing e la validazione. Inoltre
 alcuni scenari di system verification sono troppo pericolosi per essere eseguiti nel mondo reale. Si pensi ad esempio allo scenario in cui
 un pedone attraversa improvvisamente la strada davanti alla macchina. Per questi motivi il training e la validazione vengono spesso fatti in ambiente simulato.  Un simulatore molto adatto a questo scopo, e quello che è stato utilizzato in questo lavoro
 è \textbf{Carla}. Carla è un simulatore open source per la guida in ambiente urbano. È stato interamente sviluppato per supportare l'addestramento, la prototipazione
-e la validzione di modelli di guida autonoma, includendo percezione e controllo. Carla è una piattaforma libera. Tutti i modelli sono stati creati da zero
-e sono liberamente accessibili. Include diversi tipi di layout urbani, di modelli per veicoli,edifici,pedoni,segnali stradali ecc.
-La simulazione supporta una moltitudine di sensori differenti e possono essere specificate un ampio numero di condizioni ambientali.
+e la validazione di modelli di guida autonoma, includendo percezione e controllo. Carla è una piattaforma libera. Tutti i modelli sono stati creati da zero
+e sono liberamente accessibili. Include diversi tipi di layout urbani, di modelli per veicoli, edifici, pedoni, segnali stradali e ogni altro elemento necessario
+alla rappresentazione realistica di una strada urbana.
+La simulazione supporta una moltitudine di sensori differenti e possono essere specificate un ampio numero di condizioni ambientali \cite{carla}.
 \begin{figure}[h]
     \includegraphics[width = \linewidth]{weather.png}
-    \caption{Alcune delle condizioni metereologiche disponibili in Carla}
+    \caption{Alcune delle condizioni metereologiche disponibili in Carla \cite{carla}}
     \label{fig:weath}
 \end{figure}
 
 \subsection{Il motore della simulazione}
-L'engine interno è sviluppato sulla base dell'Unreal Engine 4(UE4). Fornisce una fisica reale, npc che seguono una logica elementare e un'ottima qualita di rendering.
+Il motore interno è sviluppato sulla base dell'Unreal Engine 4 (UE4), un motore grafico per lo sviluppo di videogiochi di proprietà della Epic Games. Fornisce una fisica reale, attori che seguono una logica elementare e un'ottima qualita di rendering.
 Il simulatore provvede una semplice interfaccia tra il mondo e un agente che interagisce con esso. Questa funzionalità è implementata con un'architettura server-client.
 Il server esegue la simulazione e il rendering. Il client comunica con il server attraverso un'API implementata in python. L'API permette l'interazione tra l'agente autonomo e il server
 attraverso i socket. Il client invia comandi e meta comandi e riceve dati dai sensori. I comandi sono sterzo, accelerazione e frenata. I meta comandi sono usati per modificare le proprietà
 del mondo(es. per generare veicoli e pedoni).
 \subsection{L'ambiente}
-L'ambiente è composto da modelli 3d statici(edifici, vegetazione, segnali stradali, infrastruttre) e modelli dinamici(veicoli, pedoni.). Le dimensioni 
-dei modelli sono quanto più possibile realistiche.  Il comportamento degli NPC è stato implementato per mantenere un alto livello di realismo. I veicoli non controllabili
-sono basati sul modello standard di UE4(PhysXVehicles). I pedoni si muovono nelle strade seguendo seguendo una mappa di navigazione specifica. Sono incoraggiati a muoversi nei 
+L'ambiente è composto da modelli 3d statici (edifici, vegetazione, segnali stradali, infrastrutture) e modelli dinamici (veicoli, pedoni). Le dimensioni 
+dei modelli sono quanto più possibile realistiche.  Il comportamento degli attori non controllati è stato implementato in modo da mantenere un alto livello di realismo. I veicoli non controllabili
+sono basati sul modello standard dell' Unreal Engine (PhysXVehicles). I pedoni si muovono nelle strade seguendo seguendo una mappa di navigazione specifica. Sono incoraggiati a muoversi nei 
 marciapiedi e sulle strisce pedonali ma possono attraversare la strada in qualsiasi istante. Per quanto riguarda illuminazione e condizioni atmosferiche si può scegliere tra 18 diverse combinazioni.
 Le combinazioni sono date da due possibili condizioni di luminosità(mezzogiorno e tramonto) e nove condizioni metereoligiche. Quest'ultime differiscono per copertura del cielo,
 livello di precipitazioni e la presenza o meno di pozze sull'asfalto.
@@ -32,7 +33,7 @@ Quest'ultimo riconosce 12 categorie semantiche:strada, delimitatore di corsia, s
 veicolo, pedone e altro.
 \begin{figure}[h]
     \includegraphics[width = \linewidth]{carlasense.png}
-    \caption{Alcuni sensori disponibili:}
+    \caption{Alcuni sensori disponibili \cite{carla}}
     \label{fig:sense}
 \end{figure}
 In aggiunta alle misure sensoriali, CARLA provvede anche una serie di misure associate allo stato dell'agente e al rispetto delle regole stradali. Le misure 
