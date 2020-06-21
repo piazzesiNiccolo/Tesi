@@ -7,7 +7,7 @@ rete neurale che decide l'azione ($agent.run\_step(observations)$) e applica l'a
 se il veicolo arriva a destinazione, scade il tempo, oppure avviene una collisione. L'ultima condizione non era presente nel codice originale ma è stata aggiunta per risparmiare tempo sulla singola run nel caso in cui avvenga un incidente. Per essere efficaci gli attacchi devono modificare gli input 
 \textbf{prima} che arrivino alla rete, quindi la riga $agent.run\_step(observations)$ è stata individuata come il punto giusto nel quale iniettare gli attacchi prescelti.
 
-$run\_step$ è definito nella classe ImageAgent del  modulo $image$(\ref{img}).
+Il metodo $run\_step$ è definito nella classe ImageAgent del  modulo $image$(\ref{img}).
 
 La perturbazione dell'immagine avviene in:
 \begin{lstlisting}[language=Python]

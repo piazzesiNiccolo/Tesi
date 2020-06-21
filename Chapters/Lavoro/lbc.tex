@@ -1,5 +1,5 @@
 \section{Il modello scelto}
-Per semplicità implementativa è stato scelto un modello preaddestrato. La scelta è ricaduta su Learning By Cheating(LBC) \cite{lbc}. LBC utilizza l'imitation learning come
+Per semplicità implementativa è stato scelto un modello preaddestrato. La scelta è ricaduta su Learning By Cheating (LBC) \cite{lbc}. LBC utilizza l'imitation learning come
 approccio e divide la fase di addestramento in due parti: \begin{itemize}
     \item nella prima viene addestrato un agente privilegiato sulla base di traiettorie di esperti. Questo agente ha accesso a tutte le informazioni 
     dell'ambiente circostante (layout ambientale, posizione di ogni altro partecipante). Agisce sull'ambiente con una vista dall'alto (birdview).
@@ -13,7 +13,7 @@ Tale suddivisione porta i seguenti vantaggi:\begin{itemize}
     su qualsiasi stato dell'ambiente
     \item l'agente privilegiato è di tipo white box e il suo stato interno può essere analizzato in qualsiasi istante
 \end{itemize}
-Nella figura \ref{fig:arch} è mostrata l'architettura dei due agenti. Concentrandosi sull'agente sensorimotore  l'input viene passato a una rete convoluzionale che produce una serie di 
+Nella Figura \ref{fig:arch} è mostrata l'architettura dei due agenti. Concentrandosi sull'agente sensorimotore  l'input viene passato a una rete convoluzionale che produce una serie di 
 traiettorie nella camera frontale. Le traiettorie  sono selezionate sulla base del comando scelto e vengono passati al controllore di basso livello che produce un valore di sterzata, accelerazione o freno
 \begin{figure}[h!]
     \includegraphics[width=\linewidth]{agenti.png}

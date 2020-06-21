@@ -1,6 +1,6 @@
 \newpage
 \section{Adversarial Robustness Toolbox}
-L'Adversarial Robustness Toolbox(ART) è una libreria Python che aiuta sviluppatori e ricercatori nella difesa dei modelli di machine learning dagli adversarial examples, rendendoli più sicuri 
+L'Adversarial Robustness Toolbox (ART) è una libreria Python che aiuta sviluppatori e ricercatori nella difesa dei modelli di machine learning dagli adversarial examples, rendendoli più sicuri 
 ed affidabili. Creare tali difese significa certificare e verificare la robustezza con metodi come il preprocessing degli input,  l'aumento del training set
 con esempi adversarial e fare uso di metodologie di rilevamento di input modificati. L'ART fornisce degli attacchi grazie ai quali valutare la sicurezza dei modelli
 testati. Nella libreria sono presenti interfacce standard per le librerie di machine learning più popolari. L'architettura dell'ART rende semplice combinare i vari approcci  ed è progettato sia per i ricercatori che vogliono eseguire esperimenti su larga scala di benchmarking di attacchi e difese, sia per gli sviluppatori 
@@ -18,7 +18,7 @@ L'ART è diviso in vari sottomoduli:
 
 \subsubsection{art.attacks}
 Modulo nel quale sono definite  le classi che implementano gli attacchi forniti. Ogni classe eredita dalla classe base  $Attack$ il metodo $generate$: Questo metodo ha come parametro l'array x contenente l'input originale e restituisce
-un array contenente l'input perturbato. L'implementazione concreta di $generate$ varia a seconda dell'attacco. Gli attacchi sono divisi in tre categorie:\textbf{Evasion Attacks},
+un array contenente l'input perturbato. L'implementazione concreta di $generate$ varia a seconda dell'attacco. Gli attacchi sono divisi in tre categorie: \textbf{Evasion Attacks},
 \textbf{Poisoning Attacks} e \textbf{Extraction Attacks}. 
 \paragraph{Evasion Attacks}
 Si applica una modifica impercettibile all'input per causare la misclassificazione  del modello attaccato. Si distinguono in attacchi whitebox  e attacchi blackbox a seconda che la conoscenza dei pesi del modello
