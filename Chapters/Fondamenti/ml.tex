@@ -1,17 +1,17 @@
 \section{Machine Learning}
-Il \textbf{Machine Learning(ML)} è una branca dell'intelligenza artificiale dedicata allo studio e allo sviluppo
-di algoritmi che migliorano le prestazioni attraverso l'esperienza\cite{mlwiki}. L'abilità di un algoritmo di migliorare dall'esperienza
+Il \textbf{Machine Learning (ML)} è una branca dell'intelligenza artificiale dedicata allo studio e allo sviluppo
+di algoritmi che migliorano le prestazioni attraverso l'esperienza \cite{mlwiki}. L'abilità di un algoritmo di migliorare dall'esperienza
 automaticamente è fondamentale, perchè è impossibile scrivere programmi  che sappiano a priori tutte le possibili situazioni in cui 
-un agente potrebbe ritrovarsi. Inoltre l'ambiente in cui l'agente è inserito può mutare nel tempo\cite{aima}. Consideriamo il caso dei mercati finanziari.
-Un programma creato per prevedere i prezzi delle azioni di domani deve essere in grado  di adattarsi alle variazioni improvvise causate ad esempio
+un agente potrebbe ritrovarsi. Inoltre l'ambiente in cui l'agente è inserito può mutare nel tempo \cite{aima}. Consideriamo il caso dei mercati finanziari.
+Un programma creato per prevedere i prezzi delle azioni di domani deve essere in grado  di adattarsi alle variazioni improvvise causate, ad esempio,
 da una crisi globale.
 \subsection{Problemi di apprendimento ben definiti}
 Iniziamo ad approfondire i concetti di apprendimento automatico considerando alcuni task di apprendimento. Più precisamente:
 \begin{defn}\label{def:learn}
-  Si dice che un programma \textbf{impara} dall'esperienza E rispetto a una classe di tasks T e una misura di prestazioni P,
-  se la sua prestazione nei tasks in T, misurata da P, migliora con l'esperienza E-
+  Si dice che un programma \textbf{impara} dall'esperienza E rispetto, a una classe di tasks T e una misura di prestazioni P,
+  se la sua prestazione nei tasks in T, misurata da P, migliora con l'esperienza E.
 \end{defn}
-Dalla definizione \ref{def:learn} possiamo specificare diversi problemi di apprendimento, ad esempio\cite{Mitchell97}:
+Dalla definizione \ref{def:learn} possiamo specificare diversi problemi di apprendimento, ad esempio \cite{Mitchell97}:
 \begin{itemize}
   \item \textbf{Task T}: giocare a scacchi;
   \item \textbf{Misura di prestazioni P}: percentuale di partite vinte contro gli avversari;
@@ -19,57 +19,57 @@ Dalla definizione \ref{def:learn} possiamo specificare diversi problemi di appre
 \end{itemize}
 
 
-Ogni problema di learning consiste nel prendere la conoscenza a priori e i dati ricevuti(l'esperienza E) e 
+Ogni problema di learning consiste nel prendere la conoscenza a priori e i dati ricevuti (l'esperienza E) e 
 trasformarli in una rappresentazione  interna utilizzata da un agente per prendere decisioni. La rappresentazione
 può corrispondere con i dati stessi ricevuti ma di solito è una sintesi compatta e significativa. 
 In definitiva, per specificare una determinata tecnica di apprendimento è quindi necessario affrontare le seguenti\cite{PooleMackworth17} questioni:
 \begin{itemize}
   \item \textbf{Task} Un task di apprendimento è una qualsiasi attività che può essere appresa da un agente;
   \item \textbf{Feedback} Durante l'apprendimento a un agente viene fornito un riscontro in base alla correttezza delle azioni svolte. Il riscontro può essere un premio o una punizione.  In base ad esso un agente modifica le proprie azioni
-  migliorando coì la propria esecuzione su un determinato task;
-  \item \textbf{Rappresentazione} Come detto in precedenza l'esperienza deve influenzare la rappresentazione interna di un agente.
-  Gran parte del Machine Learning è focalizzato nel contesto di una specifica rappresentazione(es. reti neurali);
+  migliorando così la propria esecuzione su un determinato task;
+  \item \textbf{Rappresentazione} Come detto in precedenza, l'esperienza deve influenzare la rappresentazione interna di un agente.
+  Gran parte del Machine Learning è focalizzato nel contesto di una specifica rappresentazione (es. reti neurali);
   \item \textbf{Online e Offline} Nel learning offline, tutti i training examples sono disponibili prima dell'azione di un agente. Nel learning online,
   gli esempi vengono ricevuti durante l'esecuzione;
   \item \textbf{Misura di Successo} Per sapere se un agente ha effettivamente imparato, è necessaria una misura di successo. La misura NON riguarda le prestazioni sui dati di addestramento, bensì le prestazioni su nuove esperienze;
   \item \textbf{Bias} Con il termine \emph{bias} si intende la tendenza a preferire un'ipotesi rispetto a un'altra, concetto fondamentale nel processo di scelta;
   \item \textbf{Noise} Una delle proprietà più importanti per un algoritmo di apprendimento è la capacità di gestione di dati condizionati.
-  Infatti nella pratica i dati possono spesso risultare imperfetti o in alcuni casi incompleti;
-  \item \textbf{Interpolazione e Estrapolazione} L'interpolazione riguarda le previsioni tra i  casi per i quali si possiedono dei dati(ad esempio approssimare una funzione dati alcuni valori di essa), l'estrapolazione comporta invece 
+  Infatti, nella pratica, i dati possono spesso risultare imperfetti o in alcuni casi incompleti;
+  \item \textbf{Interpolazione e Estrapolazione} L'interpolazione riguarda le previsioni tra i  casi per i quali si possiedono dei dati (ad esempio approssimare una funzione dati alcuni valori di essa), l'estrapolazione comporta invece 
   previsioni che vanno oltre i dati conosciuti.
 \end{itemize}
 \subsection{Forme di Learning}
 Gli algoritmi di Machine Learning sono suddivisi in diverse classi, a seconda del risultato desiderato.
 \begin{figure}
   \includegraphics[width=\linewidth]{learning.jpg}
-  \caption{tre maggiori tipi di learning\cite{learn}}
+  \caption{Tre maggiori tipi di learning \cite{learn}.}
   \label{fig:ml}
 \end{figure}
 In Figura \ref{fig:ml} vengono mostrate le tre maggiori classi.
 \subsubsection{Deep Supervised Learning}
 La forma più comune di Machine Learning è il supervised learning. Consideriamo il caso in cui si voglia addestrare un classificatore
-che sappia riconoscere i diversi tipi di segnali stradali. Si colleziona un dataset composto da immagini di segnali stradali, ciascuno di esso con la rispettiva categoria(stop, limite di velocità
+che sappia riconoscere i diversi tipi di segnali stradali. Si colleziona un dataset composto da immagini di segnali stradali, ciascuno di esso con la rispettiva categoria (stop, limite di velocità,
 divieto di sosta ecc.). Queste immagini compongono il \textbf{training set}. Durante l'apprendimento, vengono mostrate alla macchina  le immagini del training set. Per ciascuna immagine l'algoritmo produce un output della forma di un vettore di punteggi, uno per ogni categoria.
-Si calcola una funzione che misura l'errore(\textbf{loss function}) fra l'output prodotto e l'output desiderato. In base all'errore commesso l'algoritmo modifica dei paramentri interni, detti pesi, 
+Si calcola una funzione che misura l'errore (\textbf{loss function}) fra l'output prodotto e l'output desiderato. In base all'errore commesso l'algoritmo modifica dei paramentri interni, detti pesi, 
 in modo da ridurlo. Per aggiustare il vettore dei pesi in modo corretto , l'algoritmo di apprendimento utilizza una tecnica detta \emph{Gradient Descent}. Ad ogni errore commesso, il vettore dei pesi viene aggiustato nella direzione di massima decrescita dell'errore, fino a raggiungere un minimo locale. La fase di addestramento termina quando si raggiunge il minimo errore possibile, calcolato come la media della funzione di errore su ogni immagine del dataset.
 Terminato il training, la prestazione del classificatore viene misurata su un differente dataset di immagini, detto \textbf{test set}. Questo serve a verificare
 la capacità di generalizzazione della macchina, andando a controllare la correttezza degli output su input sconosciuti.
 
 \begin{figure}
   \includegraphics[width=\linewidth]{sup.png}
-  \caption{Supervised Learning\cite{sup}}
+  \caption{Supervised Learning \cite{sup}.}
   \label{fig:sup}
 \end{figure}
 
 Una buona fetta delle applicazioni pratiche utilizza classificatori lineari su caratteristiche modellate a mano. 
 Un classificatore binario calcola una somma pesata delle componenti del cosidetto \textbf{feature vector}. Se la somma è sopra una certa soglia, 
 l'input è classificato in una certa classe. I classificatori lineari suddividono lo spazio degli input in semplici sottoregioni dette iperpiani, ma contesti come il riconoscimento di immagini o il riconoscimento vocale hanno
-bisogno di modelli più complessi, capaci di rilevare  minuscole variazioni su caratteristiche importanti(\textbf{selettività}) e di ignorare anche grandi variazioni su caratteristiche irrilevanti al contesto, come ad esempio una rotazione dell'immagine(\textbf{invarianza}). La scelta delle caratteristiche rilevanti è quindi una
+bisogno di modelli più complessi, capaci di rilevare  minuscole variazioni su caratteristiche importanti (\textbf{selettività}) e di ignorare anche grandi variazioni su caratteristiche irrilevanti al contesto, come ad esempio una rotazione dell'immagine (\textbf{invarianza}). La scelta delle caratteristiche rilevanti è quindi una
 fase fondamentale del processo di learning. Tradizionalmente, la scelta delle features veniva costruita direttamente dagli sviluppatori, il che comportava una grande richiesta di abilità ingegneristica e di competenza nel dominio di lavoro.
 Grazie al Deep  Learning  il processo di estrazioni di features rilevanti viene automatizzato con una procedura di apprendimento a scopo generale.
-Un'architettura di deep learning è formata da uno stack multilivello di moduli elementari, tutti(o la maggior parte) sottoposti a learning, e la maggior parte dei quali
+Un'architettura di deep learning è formata da uno stack multilivello di moduli elementari, tutti (o la maggior parte) sottoposti a learning, e la maggior parte dei quali
 calcola una mappatura non lineare tra input-output. Ciascun livello aumenta sia la selettività che l'invarianza della rappresentazione. 
-Maggiore è la profondità dello stack, maggiore è la complessità della funzione di scelta, capace di rilevare i più piccoli cambiamenti a dettagli rilevanti\cite{deep}.
+Maggiore è la profondità dello stack, maggiore è la complessità della funzione di scelta, capace di rilevare i più piccoli cambiamenti a dettagli rilevanti \cite{deep}.
 
 \subsubsection{Deep FeedForward Neural Networks}
 
@@ -78,37 +78,37 @@ studio sulla struttura del cervello umano e sulle modalità di trasmissioni di i
 un vettore di feature \textbf{x} a una categoria \textbf{y}. Una rete feedforward definisce una funzione $y=f(x;\theta)$ e apprende il valore di $\theta$ che permette
 la miglior approssimazione possibile. Questo tipo di reti viene detto \textbf{feedforward} perchè i dati passano dall'input x, alle computazioni che definiscono f, e infine all'output y. Non vi sono cicli 
 nei quali risultati di calcoli interni sono reinseriti all'interno della rete. Quando le reti includono anche cicli vengono dette \textbf{reti ricorrenti}.
-Uno schema di una rete feedforward  è presentato in Figura \ref{fig:ann}. I livelli intermedi sono detti \textbf{hidden(nascosti)} perchè nel \textbf{training set} non vengono esplicitati
+Uno schema di una rete feedforward  è presentato in Figura \ref{fig:ann}. I livelli intermedi sono detti \textbf{hidden (nascosti)} perchè nel \textbf{training set} non vengono esplicitati
 gli output desiderati  per ciascuno di questi livelli. Ogni livello nascosto rappresenta una funzione e la funzione totale è data dalla composizione di queste funzioni. Per esempio,
-se abbiamo 3 livelli la funzione completa sarà $f(x) = f^{3}(f^{2}(f^{1}(x)))$. Il singolo livello è composto da molte \textbf{unità} che agiscono in parallelo, ciascuna rappresentante una funzione da vettore a scalare\cite{bengio}.
+se abbiamo 3 livelli la funzione completa sarà $f(x) = f^{3}(f^{2}(f^{1}(x)))$. Il singolo livello è composto da molte \textbf{unità} che agiscono in parallelo, ciascuna rappresentante una funzione da vettore a scalare \cite{bengio}.
 \begin{figure}
   \includegraphics[scale=0.3]{ann.png}
-  \caption{schema base di una rete neurale\cite{ann}}
+  \caption{Schema base di una rete neurale \cite{ann}.}
   \label{fig:ann}
 \end{figure}
 
 La generica i-esima unità  riceve un vettore di input dalle unità del livello precedente, indicati con $X_j$. $X_j$ viene trasmesso all'unità opportunamente moltiplicato da un peso $W_{ij}$.
 Gli input ricevuti dall'i-esima unità costituiscono lo stato di attivazione, rappresentato dalla sommatoria \[\sum_jW_{ij}X_j\] L'output prodotto dall'unità viene calcolato attraverso la funzione $f$, detta funzione di attivazione. Il compito della funzione di attivazione è quello di controllare
-se lo stato di attivazione supera una certa soglia. Se questo avviene l'unità trasmette alle unità del livello successivo\cite{mazzetti}.
+se lo stato di attivazione supera una certa soglia. Quando questo avviene l'unità trasmette alle unità del livello successivo \cite{mazzetti}.
 \begin{figure}
   \includegraphics[scale=0.5]{nnunit.png}
-  \caption{un "neurone" artificiale \cite{unit}}
+  \caption{Un "neurone" artificiale \cite{unit}.}
   \label{fig::unit}
 \end{figure}
 \begin{figure}
   \includegraphics[scale=0.2]{actfun.png}
-  \caption{Alcune funzioni di attivazione\cite{act}}
+  \caption{Alcune funzioni di attivazione \cite{act}.}
   \label{fig:act}
 \end{figure}
 
 \subsubsection{Learning nei neural network}
-Il learning di una rete neurale avviene solitamente(nel caso dell'object recognition) in modalità supervisionata.  Si vuole determinare un vettore dei pesi $\vec{w}$ che permetta alla rete di produrre l'output corretto per ciasun esempio nel training set.
-L'idea di base è quella di usare il gradient descent ma in una rete multilivello il problema è ulteriormente complicato dalla presenza degli \textbf{hidden layers}. Mentre nell'output layer l'errore che si commette in ciascuna fase di addestramento è esplicito, l'errore presente nei livelli nascosti
+Il learning di una rete neurale avviene solitamente (nel caso dell'object recognition) in modalità supervisionata.  Si vuole determinare un vettore dei pesi $\vec{w}$ che permetta alla rete di produrre l'output corretto per ciasun esempio nel training set.
+L'idea di base è quella di usare il gradient descent, ma in una rete multilivello il problema è ulteriormente complicato dalla presenza degli \textbf{hidden layers}. Mentre nell'output layer l'errore che si commette in ciascuna fase di addestramento è esplicito, l'errore presente nei livelli nascosti
 non è immediato da calcolare, in quanto nel training set non sono presenti i valori che i nodi nascosti devono assumere. Il problema viene risolto trasmettendo a ritroso
 l'errore commesso dall'output layer ai livelli nascosti, con un algoritmo detto di \textbf{back-propagation}.
 \begin{figure}[h]
   \includegraphics[scale=0.5]{back.png}
-  \caption{pseudocodice della back-propagation\cite{back}}
+  \caption{Pseudocodice della back-propagation \cite{back}.}
   \label{fig:back}
 \end{figure}
 \subsubsection{Reti Convoluzionali}
@@ -121,23 +121,25 @@ la stessa filter bank, e diverse feature maps usano diverse filter bank. L'aggre
 formando pattern locali che vengono facilmente riconosciuti. La condivisione di pesi tra unità  diverse è spiegata notando come un pattern possa apparire in qualsiasi parte dell'immagine, e l'utilizzo di una filter bank garantisce invarianza alla località.
 Passando ai pooling layer essi hanno il compito di "fondere" features semanticamente simili,tipicamente calcolando il massimo tra un gruppo di unità di una feature map. Questo causa una riduzione nelle dimensioni dell'input che viene poi passato
 ai layer successivi, La riduzione delle dimensione è fondamentale per garantire efficienza computazionale e per aumentare l'invarianza alle piccole perturbazioni.
-Due o più fasi di convoluzione e pooling sono  sono seguite da altri layer convoluzionali e completamente connessi. Le filter banks vengono addestrate con algoritmi di backpropagation.\cite{deep}
+Due o più fasi di convoluzione e pooling sono seguite da altri layer convoluzionali e completamente connessi. Le filter banks vengono addestrate con algoritmi di backpropagation \cite{deep}.
 \begin{figure}[h]
   \includegraphics[width=\linewidth]{conv.png}
-  \caption{rete neurale convoluzionale}
+  \caption{Rete neurale convoluzionale \cite{cnn}.}
   \label{fig:conv}
 \end{figure} 
 
 \subsection{Adversarial Examples}
-Nonostante gli ottimi risultati raggiunti, le reti neurali sono state dimostrate essere vulnerabili ai cosiddetti \emph{adversarial examples}\cite{art2018}. Gli adversarial
-examples sono input intenzionalmente modificati che risultano essere molto simili agli input originali per gli esseri umani, ma che causano decisioni scorrette
-da parte dei modelli. La vulnerabilità delle reti a questo tipo di attacchi rappresenta un grande rischio di sicurezza nelle applicazioni pratiche come i veicoli a guida autonoma. Studiarli
-è quindi necessario per identificare le limitazioni degli algoritmi di learning attuali, dando così spunti per migliorare la robustezza dei modelli.
-
 \begin{figure}[h]
-  \includegraphics[width = \linewidth]{AdversarialExample_Panda.png}
-  \caption{Adversarial example \cite{art2018}}
+  \includegraphics[width=\linewidth]{AdversarialExample_Panda.png}
+  \caption{Adversarial example \cite{art2018}.}
   \label{fig:adv}
 \end{figure}
+
+Nonostante gli ottimi risultati raggiunti, le reti neurali sono state dimostrate essere vulnerabili ai cosiddetti \emph{adversarial examples} \cite{art2018}. Gli adversarial
+examples sono input intenzionalmente modificati che risultano essere molto simili agli input originali per gli esseri umani, ma che causano decisioni scorrette
+da parte della rete. La vulnerabilità delle reti a questo tipo di attacchi rappresenta un grande rischio di sicurezza nelle applicazioni pratiche come i veicoli a guida autonoma. Studiarli
+è quindi necessario per identificare le limitazioni degli algoritmi di learning attuali, dando così spunti per migliorare la robustezza dei modelli.
+
+
 
     

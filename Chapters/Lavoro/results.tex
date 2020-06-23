@@ -6,24 +6,24 @@ Un percorso viene considerato non completato se avviene una collisione oppure se
 Il percorso in NoCrashTown01 prevede una singola curva a destra, mentre in NoCrashTown02 sono presenti svolte e incroci multipli.
 I 4 gruppi hanno le seguenti caratteristiche:\begin{itemize}
     \item NoCrashTown01-v3\begin{itemize}
-        \item condizioni metereologiche: ClearNoon (mezzogiorno, nuvoloso con asfalto asciutto), WetNoon (mezzogiorno, nuvoloso con asfalto bagnato) e HardRain (mezzogiorno, pioggia intensa con asfalto bagnato)
-        \item numero di veicoli:20
-        \item numero di pedoni:50
+        \item condizioni metereologiche: ClearNoon (mezzogiorno, nuvoloso con asfalto asciutto), WetNoon (mezzogiorno, nuvoloso con asfalto bagnato) e HardRain (mezzogiorno, pioggia intensa con asfalto bagnato);
+        \item numero di veicoli:20;
+        \item numero di pedoni:50.
     \end{itemize}
     \item NoCrashTown02-v3 \begin{itemize}
-        \item condizioni metereologiche: ClearNoon, WetNoon e HardRain 
-        \item numero di veicoli:15
-        \item numero di pedoni:50
+        \item condizioni metereologiche: ClearNoon, WetNoon e HardRain;
+        \item numero di veicoli:15;
+        \item numero di pedoni:50.
     \end{itemize}
     \item NoCrashTown01-v4 \begin{itemize}
-        \item condizioni metereologiche: WetSunset (tramonto, sereno con asfalto bagnato) e SoftRainSunset (tramonto, pioggia debole  con asfalto bagnato). WetSunset è usato in due percorsi.
-        \item numero di veicoli:20
-        \item numero di pedoni:50
+        \item condizioni metereologiche: WetSunset (tramonto, sereno con asfalto bagnato) e SoftRainSunset (tramonto, pioggia debole  con asfalto bagnato). WetSunset è usato in due percorsi;
+        \item numero di veicoli:20;
+        \item numero di pedoni:50.
     \end{itemize}
     \item NoCrashTown02-v4 \begin{itemize}
-        \item condizioni metereologiche: WetSunset  e SoftRainSunset.
-        \item numero di veicoli:15
-        \item numero di pedoni:50
+        \item condizioni metereologiche: WetSunset  e SoftRainSunset;
+        \item numero di veicoli:15;
+        \item numero di pedoni:50.
     \end{itemize}
 \end{itemize}
 
@@ -32,8 +32,8 @@ La valutazione degli attacchi si è svolta in due fasi:\begin{itemize}
     \item nella seconda fase, si eseguono le stesse run della prima, ma ogni volta con un diverso attacco iniettato.
 \end{itemize}
 I risultati prodotti dall'iniezione di ciascun attacco sono stati confrontati con quelli prodotti dalla golden run, in modo da valutarne l'efficacia.
-Il confronto è stato fatto con l'analisi dei video prodotti, valutando i percorsi portati a termine,  la stabilità della guida, i semafori rossi ignorati e le cause dei percorsi
-non completati(collisioni e timeout).
+Il confronto è stato fatto con l'analisi dei video prodotti (disponibili a \href{https://drive.google.com/drive/folders/1tTEAQSK2XAK_sdmuWo80Bd-58_pkiK3h?usp=sharing}{\emph{questo indirizzo}}), valutando i percorsi portati a termine,  la stabilità della guida, i semafori rossi ignorati e le cause dei percorsi
+non completati (collisioni e timeout).
 \subsection{Golden Run}
 \begin{table}[h]
     \begin{tabular}{|c|c|c|}
@@ -48,7 +48,7 @@ non completati(collisioni e timeout).
         \textbf{TOTALE}                  & 12/12          & 100\% \\
         \hline
     \end{tabular}
-    \caption{risultati golden run}
+    \caption{Risultati golden run.}
 Nella golden run tutti i percorsi vengono completati con successo. La traiettoria del veicolo è stabile, nessun semaforo è stato ignorato e non si sono registrate collisioni.
 \end{table}
 \begin{figure}[h!]
@@ -61,7 +61,7 @@ Nella golden run tutti i percorsi vengono completati con successo. La traiettori
     \includegraphics[width=6cm]{GOLD2.png}
     \label{fig:gold2}
     \end{minipage}
-    \caption{golden run}
+    \caption{Golden run.}
     \label{fig:goldrun}
     \end{figure}
 \newpage
@@ -79,11 +79,11 @@ Nella golden run tutti i percorsi vengono completati con successo. La traiettori
         \textbf{TOTALE}                  & 6/12           & 50\% \\
         \hline
     \end{tabular}
-    \caption{risultati run HopSkipJump}
+    \caption{Risultati run HopSkipJump}
     \label{tab:hsj}
 \end{table}
 La macchina continua a seguire il percorso prestabilito in modo molto più instabile. L'instabilità è particolarmente evidente negli waypoints generati, che cambiano continuamente posizione anche nei rettilinei. A causa dei problemi elencati
-si nota un aumento dei semafori ignorati(9) e delle uscite fuori strada. I fallimenti(6) sono stati tutti causati da collisioni.
+si nota un aumento dei semafori ignorati (9) e delle uscite fuori strada. I fallimenti (6) sono stati tutti causati da collisioni.
 \begin{figure}[h]
     \centering
     \parbox{6cm}{
@@ -94,12 +94,12 @@ si nota un aumento dei semafori ignorati(9) e delle uscite fuori strada. I falli
     \includegraphics[width=6cm]{HOP2.png}
     \label{fig:hop2}
     \end{minipage}
+    \caption{Collisioni causate da HopSkipJump.}
     \label{fig:hoprun}
-    \caption{collisioni causate da HopSKipJump}
-    \label{fig:hop}
     \end{figure}
-\subsection{Iniezione di Spatial Transformation}
-\begin{table}[h]
+\newpage
+\subsection{Iniezione di Spatial Transformation (STA)}
+\begin{table}[h!]
     \begin{tabular}{|c|c|c|}
         \hline
         Mappa                   & Run completate & Percentuale di completamento\\
@@ -112,7 +112,7 @@ si nota un aumento dei semafori ignorati(9) e delle uscite fuori strada. I falli
         \textbf{TOTALE}                  & 7/12           & 0\% \\
         \hline
     \end{tabular}
-    \caption{risultati run Spatial Transformation (STA)}
+    \caption{Risultati run Spatial Transformation.}
     \label{tab:sta}
 \end{table}
 Nelle run completate la macchina si comporta normalmente. Non si notano variazioni rilevanti nella traiettoria e nessun semaforo viene ignorato. Delle 5 run
@@ -131,7 +131,7 @@ In una run la macchina esce subito di strada andando a sbattere contro un edific
     \caption{collisioni causate da Spatial Transformation}
     \label{fig:starun}
     \end{figure}
-\subsection{Iniezione di Basic Iterative Method(BIM)}
+\subsection{Iniezione di Basic Iterative Method (BIM)}
 \begin{table}[h]
     \begin{tabular}{|c|c|c|}
         \hline
@@ -145,7 +145,7 @@ In una run la macchina esce subito di strada andando a sbattere contro un edific
         \textbf{TOTALE}                  & 0/12           & 0\% \\
         \hline
     \end{tabular}
-    \caption{risultati run Basic Iterative Method}
+    \caption{Risultati run Basic Iterative Method.}
     \label{tab:bim}
 \end{table}
 La guida autonoma risulta compromessa. In nessuno dei percorsi la macchina segue il tragitto, ma invece sterza subito verso destra fino ad uscire di strada
@@ -160,7 +160,7 @@ e urtare oggetti della mappa.
     \includegraphics[width=5cm]{BIM2.png}
     \label{fig:bim2}
     \end{minipage}
-    \caption{collisioni causate da Basic Iterative Method}
+    \caption{Collisioni causate da Basic Iterative Method.}
     \label{fig:bimrun}
     \end{figure}
 \newpage
@@ -178,10 +178,10 @@ e urtare oggetti della mappa.
         \textbf{TOTALE}                  & 3/12           & 25\% \\
         \hline
     \end{tabular}
-    \caption{risultati run NewtonFool}
+    \caption{Risultati run NewtonFool.}
     \label{tab:nf}
 \end{table}
-Il veicolo diventa inaffidabile. Si ha bassa stabilità nella guida e nella traiettoria generata. Le run non completate(9) sono state tutte causate da collisioni dopo che la macchina
+Il veicolo diventa inaffidabile. Si ha bassa stabilità nella guida e nella traiettoria generata. Le run non completate (9) sono state tutte causate da collisioni dopo che la macchina
 aveva invaso la corsia opposta o era uscita di strada. \begin{figure}[h]
     \centering
     \parbox{6cm}{
@@ -192,7 +192,7 @@ aveva invaso la corsia opposta o era uscita di strada. \begin{figure}[h]
     \includegraphics[width=6cm]{FOOL2.png}
     \label{fig:fool2}
     \end{minipage}
-    \caption{collisioni causate da NewtonFool}
+    \caption{Collisioni causate da NewtonFool.}
     \label{fig:foolrun}
     \end{figure}
 \newpage
@@ -212,6 +212,6 @@ caso la macchina cambia completamente comportamento, diventando inutilizzabile.
         NF             &  3/12                &   bassa         &   13                      & 9          & 0 \\
         \hline
     \end{tabular}
-    \caption{riassunto dei risultati}
+    \caption{Riassunto dei risultati.}
     \label{tab:ria}
 \end{table}

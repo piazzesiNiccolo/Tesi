@@ -3,7 +3,7 @@ I veicoli a guida autonoma appartengono alla categoria dei sistemi critici. Un s
 considerati inacettabili. Questi includono danni a oggetti di valore, danni ambientali e nei casi piu gravi, il ferimento o addirittura la morte delle persone.
 Per garantire che un tale sistema operi nel modo più sicuro possibile è necessario analizzare tutti i fattori che possono portare a  un fallimento irreversibile.
 
-La \textbf{dependability} è la capacità di un sistema di fornire un servizio sul quale è possibile fare affidamento in modo giustificato \cite{tax}.
+La \textbf{dependability} è la capacità di un sistema di fornire un servizio sul quale fare affidamento in modo giustificato \cite{tax}.
 Essa viene suddivisa in 3 categorie:
 \begin{itemize}
     \item Attributi,
@@ -12,16 +12,16 @@ Essa viene suddivisa in 3 categorie:
 \end{itemize}
 \begin{figure}[h]
     \includegraphics[width = \linewidth]{dep.png}
-    \caption{tassonomia  della dependability\cite{dep}}
+    \caption{Tassonomia  della dependability \cite{dep}.}
     \label{fig:dep}
 \end{figure}
 \section{Attributi}
 La dependability comprende i seguenti attributi:
 \begin{itemize}
-    \item \textbf{availability}: disponibilità del servizio corretto,
-    \item \textbf{reliability}: stabilità del servizio corretto,
-    \item \textbf{safety}: assenza di conseguenze catastrofiche sull'utente e sull'ambiente,
-    \item \textbf{integrity}: assenza di alterazioni improprie al sistema,
+    \item \textbf{availability}: disponibilità del servizio corretto;
+    \item \textbf{reliability}: stabilità del servizio corretto;
+    \item \textbf{safety}: assenza di conseguenze catastrofiche sull'utente e sull'ambiente;
+    \item \textbf{integrity}: assenza di alterazioni improprie al sistema;
     \item \textbf{maintainability}: capacità di subire modifiche e riparazioni.
 \end{itemize}
 Quando si considera la \textbf{security} è necessario specificare un ulteriore attributo: la confidentiality, ovvero la mancata divulgazione di informazioni non 
@@ -34,20 +34,20 @@ Nel corso degli anni si sono sviluppate molte metodologie per raggiungere depend
     \item \textbf{fault removal}: mezzi per ridurre numero e gravità dei guasti;
     \item \textbf{fault forecasting}: mezzi per stimare numero, incidenza futura e probabili conseguenze di guasti.
 \end{itemize}
-Fault prevention e fault tolerance portano al conseguimento della dependability mentre fault removal e fault forecasting sono i mezzi di validazione
+Fault prevention e fault tolerance portano al conseguimento della dependability mentre fault removal e fault forecasting sono i mezzi di validazione.
 \section{Minacce}
-Le maggiori minacce per la dependability sono i \textbf{guasti}(faults in inglese). I guasti hanno varie cause e causano gli \textbf{errori}. Un errore può causarne altri fino a propagarsi
+Le maggiori minacce per la dependability sono i \textbf{guasti} (faults in inglese). I guasti hanno varie cause e portano agli \textbf{errori}. Un errore può causarne altri fino a propagarsi
 al di fuori dei confini del sistema. Quando ciò avviene, si verifica un \textbf{fallimento}. Un fallimento è la situazione in cui il servizio fornito
 è diverso dal servizio corretto.
 \begin{figure}[h]
     \includegraphics[width=\linewidth]{chain.png}
-    \caption{Catena guasto-errore-fallimento}
+    \caption{Catena guasto-errore-fallimento.}
 \end{figure}
 \subsection{Tipi di guasti}
 I guasti vengono classificati secondo 8 parametri, i quali creano le classi di guasto elementari, mostrate in Figura \ref{fig:tax}.
 \begin{figure}[h]
     \includegraphics[width = \linewidth]{faults.png}
-    \caption{tassonomia dei guasti\cite{tax}}
+    \caption{Tassonomia dei guasti \cite{tax}.}
     \label{fig:tax}
 \end{figure}
  I diversi tipi di guasto sono raggruppati in tre categorie:
@@ -59,19 +59,19 @@ I guasti vengono classificati secondo 8 parametri, i quali creano le classi di g
  \newpage
  \subsubsection{Guasti causati dall'azione umana}
  I guasti sul quale ci concentriamo sono quelli di origine umana . Questi guasti possono essere causati da una mancanza di 
- azioni ove necessarie(omission faults), oppure da azioni che si rilevano essere sbagliate(commision faults). Vengono
+ azioni ove necessarie (omission faults), oppure da azioni che si rilevano essere sbagliate (commision faults). Vengono
  suddivisi in due tipi, sulla base dell'\emph{obiettivo} dello sviluppatore o dell'essere umano che lo causa:
  \begin{itemize}
      \item guasti involontari, causati  accidentalmente senza lo scopo di arrecare danno;
      \item guasti maligni, causati in modo volontario per arrecare danni al sistema durante l'uso.
  \end{itemize}
- I guasti maligni hanno  come scopo la negazione del servizio(denial of service), l'accesso a informazioni confidenziali
+ I guasti maligni hanno  come scopo la negazione del servizio (denial of service), l'accesso a informazioni confidenziali
  o la modifica impropria di un sistema.
  Vengono raggruppati in due classi:
  \begin{itemize}
      \item \textbf{guasti a livello logico}: comprendono virus, worms, bombe logiche ecc\dots;
      \item \textbf{tentativi di intrusione}, anche usando mezzi fisici.
  \end{itemize}
- In entrambi i casi si sfrutta una vulnerabilità di un sistema per ottenerne il pieno controllo(exploit).
+ In entrambi i casi si sfrutta una vulnerabilità di un sistema per ottenerne il pieno controllo (exploit).
  La vulnerabilità solitamente è a livello software ed è causata dall'azione involontaria degli sviluppatori.
 

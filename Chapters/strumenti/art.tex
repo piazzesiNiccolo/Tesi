@@ -3,17 +3,17 @@
 L'Adversarial Robustness Toolbox (ART) è una libreria Python che aiuta sviluppatori e ricercatori nella difesa dei modelli di machine learning dagli adversarial examples, rendendoli più sicuri 
 ed affidabili. Creare tali difese significa certificare e verificare la robustezza con metodi come il preprocessing degli input,  l'aumento del training set
 con esempi adversarial e fare uso di metodologie di rilevamento di input modificati. L'ART fornisce degli attacchi grazie ai quali valutare la sicurezza dei modelli
-testati. Nella libreria sono presenti interfacce standard per le librerie di machine learning più popolari. L'architettura dell'ART rende semplice combinare i vari approcci  ed è progettato sia per i ricercatori che vogliono eseguire esperimenti su larga scala di benchmarking di attacchi e difese, sia per gli sviluppatori 
+testati. L'architettura dell'ART rende semplice combinare i vari approcci  ed è progettato sia per i ricercatori che vogliono eseguire esperimenti su larga scala di benchmarking di attacchi e difese, sia per gli sviluppatori 
 che vogliono rilasciare applicazioni che fanno uso di machine learning in modo sicuro \cite{art2018}.
 \subsection{La struttura della libreria}
 L'ART è diviso in vari sottomoduli:
 \begin{itemize}
-    \item art.attacks
-    \item art.classifiers
-    \item art.defences
-    \item art.detection
-    \item art.metrics
-    \item art.poison\_detection
+    \item art.attacks,
+    \item art.classifiers,
+    \item art.defences,
+    \item art.detection,
+    \item art.metrics,
+    \item art.poison\_detection.
 \end{itemize}
 
 \subsubsection{art.attacks}
@@ -25,7 +25,7 @@ Si applica una modifica impercettibile all'input per causare la misclassificazio
 sia necessaria o meno. Gli attachi blackbox infatti, hanno bisogno della sola previsione finale. Al momento della scrittura, gli evasion attacks presenti nella libreria sono:
  Threshold Attack, Pixel Attack, HopSkipJump Attack, High Confidence Low Uncertainty adversarial examples, Projected Gradient Descent, NewtonFool, Elastic net attack,
 Spatial transformation attack, Query-efficient black-box attack, Zeroth-order optimization attack, Decision-based attack / Boundary attack, Adversarial patch, Decision tree attack,
-Carlini \& Wagner(C\&W) L\_2 and L\_inf attacks, Basic iterative method, Jacobian saliency map, Universal perturbation, DeepFool, Virtual adversarial method, Fast gradient method
+Carlini \& Wagner   (C\&W) L\_2 and L\_inf attacks, Basic iterative method, Jacobian saliency map, Universal perturbation, DeepFool, Virtual adversarial method, Fast gradient method
 
 \paragraph{Poisoning Attacks}
 Si modifica il training set per ridurre l'accuratezza del processo di learning. Il poisoning include la modifica degli esempi nel dataset, l'iniezione di dati "maligni" o la modifica
@@ -35,41 +35,41 @@ delle etichette. Al momento della scrittura, i poisoning attacks presenti nella 
 Functionally Equivalent Extraction, Copycat Confidence, KnockoffNets
 
 \subsubsection{art.classifers}
-Modulo nel quale sono definite le classi che permettono di usare l'ART insieme a modelli sviluppati con librerie di Machine Learning esterne.  Le liberie attualmente supportate sono: 
+Modulo nel quale sono definite le classi che permettono di usare l'ART insieme a modelli sviluppati con librerie di Machine Learning esterne.  Le librerie attualmente supportate sono: 
 Tensorflow, Keras, PyTorch, MXNet, Scikit-learn, XGBoost,LightGBM,CatBoost e Gpy. Le classi svolgono il ruolo di "contenitore", fornendo metodi per addestrare e testare i modelli senza dover accedere direttamente
 ad essi.
 \subsubsection{art.defences}
-In questo modulo vengono definite le classi che implementano vari tipi di difese contro gli adversarial attacks. Le difese sono divise in:difese preprocessing, difese postprocessing
+In questo modulo vengono definite le classi che implementano vari tipi di difese contro gli adversarial attacks. Le difese sono divise in: difese preprocessing, difese postprocessing
 e difese basate su Transformer.
 
 \paragraph{Difese preprocessing}
 Difese che agiscono applicando modifiche agli input prima che vengano classificati.
      \begin{itemize}
-        \item Thermometer encoding
-        \item total variance minimization
-        \item PixelDefend
-        \item Gaussian data augmentation
-        \item Feature squeezing
-        \item Spatial smoothing
-        \item JPEG compression
-        \item Label smoothing
-        \item Virtual adversarial training
+        \item Thermometer encoding,
+        \item total variance minimization,
+        \item PixelDefend,
+        \item Gaussian data augmentation,
+        \item Feature squeezing,
+        \item Spatial smoothing,
+        \item JPEG compression,
+        \item Label smoothing,
+        \item Virtual adversarial training.
     \end{itemize}
 
 \paragraph{Difese postprocessing}
 Difese che agiscono modificando l'output generato dal modello.
 \begin{itemize}
-        \item Reverse Sigmoid
-        \item Random Noise 
-        \item Class labels
-        \item High Confidence
-        \item Rounding
+        \item Reverse Sigmoid,
+        \item Random Noise,
+        \item Class labels,
+        \item High Confidence,
+        \item Rounding.
     \end{itemize}
 \paragraph{difese basate sul training}
-Difese il cui è obiettivo è rendere più robusto un modello durante la fase di addestramento
+Difese il cui è obiettivo è rendere più robusto un modello durante la fase di addestramento.
  \begin{itemize}
-        \item Adversarial training
-        \item Adversarial training Madry PGD
+        \item Adversarial training,
+        \item Adversarial training Madry PGD.
 \end{itemize}
 \paragraph{Difese basate su Transformer}
 Difese che irrobustiscono i modelli a cui sono applicate utilizzando tecniche basate sul modello Transformer.
@@ -81,22 +81,22 @@ Difese che irrobustiscono i modelli a cui sono applicate utilizzando tecniche ba
 Modulo nel quale vengono definite le classi che permettono la rilevazione di adversarial inputs e  di dataset avvelenati.
 \begin{itemize}
     \item adversarial detection \begin{itemize}
-        \item rilevatore base degli input
-        \item rilevatore addestrato su uno specifico livello
-        \item rilevatore basato su Fast Generalized Subset Scan
+        \item rilevatore base degli input,
+        \item rilevatore addestrato su uno specifico livello,
+        \item rilevatore basato su Fast Generalized Subset Scan.
     \end{itemize}
     \item poisoning detection \begin{itemize}
-        \item rilevazione basata sull'analisi dell'attivazione
-        \item rilevazione basata sulla provenienza dei dati
+        \item rilevazione basata sull'analisi dell'attivazione,
+        \item rilevazione basata sulla provenienza dei dati.
     \end{itemize}
 \end{itemize}
 \subsubsection{art.metrics}
 In questo modulo sono definite alcune metriche per verificare, validare e certificare sicurezza e robustezza dei modelli in analisi. 
 
 \begin{itemize}
-    \item Clique Method Robustness Verification
-    \item Randomized smoothing
-    \item CLEVER
-    \item Loss sensitivity
-    \item Empirical robustness
+    \item Clique Method Robustness Verification,
+    \item Randomized smoothing,
+    \item CLEVER,
+    \item Loss sensitivity,
+    \item Empirical robustness.
 \end{itemize}
