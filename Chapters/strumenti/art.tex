@@ -21,7 +21,7 @@ Modulo nel quale sono definite  le classi che implementano gli attacchi forniti.
 un array contenente l'input perturbato. L'implementazione concreta di $generate$ varia a seconda dell'attacco. Gli attacchi sono divisi in tre categorie: \textbf{Evasion Attacks},
 \textbf{Poisoning Attacks} e \textbf{Extraction Attacks}. 
 \paragraph{Evasion Attacks}
-Si applica una modifica impercettibile all'input per causare la misclassificazione  del modello attaccato. Si distinguono in attacchi whitebox  e attacchi blackbox a seconda che la conoscenza dei pesi del modello
+Si applica una modifica impercettibile all'input per causare la misclassificazione  del modello attaccato. Si distinguono in attacchi whitebox  e attacchi blackbox, a seconda che la conoscenza dei pesi del modello
 sia necessaria o meno. Gli attachi blackbox infatti, hanno bisogno della sola previsione finale. Al momento della scrittura, gli evasion attacks presenti nella libreria sono:
  Threshold Attack, Pixel Attack, HopSkipJump Attack, High Confidence Low Uncertainty adversarial examples, Projected Gradient Descent, NewtonFool, Elastic net attack,
 Spatial transformation attack, Query-efficient black-box attack, Zeroth-order optimization attack, Decision-based attack / Boundary attack, Adversarial patch, Decision tree attack,
@@ -46,7 +46,7 @@ e difese basate su Transformer.
 Difese che agiscono applicando modifiche agli input prima che vengano classificati.
      \begin{itemize}
         \item Thermometer encoding,
-        \item total variance minimization,
+        \item Total variance minimization,
         \item PixelDefend,
         \item Gaussian data augmentation,
         \item Feature squeezing,
